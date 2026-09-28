@@ -1,0 +1,40 @@
+# secrets: never commit
+.env
+.env.*
+launch_journal.json
+
+# python
+__pycache__/
+*.pyc
+
+# training runs, renders and recordings are large and local. Kept: the final brain (runs/final) and the recorded
+# session of the RatTest launch, so anyone can replay it and check the brain commit
+runs/*
+!runs/final/
+!runs/brainrig_20260924T133937Z_seed2026/
+# the recorded session of the Labrat launch (replay_session.py re-runs it)
+!runs/brainrig_20260924T211408Z_seed2026/
+# the two training logs behind the website's "Watching it learn" charts (site/assets/training.json), so the curves
+# can be checked against them; nothing else from those runs
+!runs/lever_v3/
+runs/lever_v3/*
+!runs/lever_v3/log.jsonl
+!runs/steer_v1/
+runs/steer_v1/*
+!runs/steer_v1/log.jsonl
+# the Rat Tiles sanity run's log, behind the numbers in README.md "Rat Tiles"
+!runs/tiles_sanity/
+runs/tiles_sanity/*
+!runs/tiles_sanity/log.jsonl
+# the rule v2 sanity run's log (red buttons on a hit line, timed presses), behind the same section
+!runs/tiles_v2_sanity/
+runs/tiles_v2_sanity/*
+!runs/tiles_v2_sanity/log.jsonl
+build/
+shots/
+live/dev_shots/
+*.mp4
+*.mkv
+*.webm
+*.log
+seq_*.txt
