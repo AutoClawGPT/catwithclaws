@@ -8,7 +8,7 @@ theme='dark')`), and pons's one `eth_sendTransaction` per run was captured and a
 `.env` was not opened. Chain reads were `eth_call` / `eth_estimateGas` only.
 
 - Date: 2026-09-25, runs between unix 1790321069 and 1790321770 (latest block about 72,046,625).
-- Page: `https://www.ponsfamily.com/launchpad/0xaCa07FE3BC5fF3e7501cA1dCCFCd937fD710680d`, viewport 1280x900, device scale 1.
+- Page: `the $CATCLAWS pons page, after our own launch`, viewport 1280x900, device scale 1.
 - Probe scripts (in the session scratchpad, not the project): `buyrig_probe.py` (map / flow / masked / boxes / amount /
   reload), `buyrig_decode.py`, `buyrig_mask.js` (the mask is copied in full in the appendix below).
 - Screenshots: `C:\Users\USER\AppData\Local\Temp\claude\C--Users-USER-claude\2c7fd74d-f439-4e77-a2f4-287f9e798649\scratchpad\buyrig_*.png`.

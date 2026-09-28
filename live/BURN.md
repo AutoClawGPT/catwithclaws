@@ -9,7 +9,7 @@ wallet, and sizes that hour's burn.**
                                                                                in any hour, a ceiling in code)
 
 The owner asked for this ("burn 5% of the coins we hold every hour based on performance"). The wallet is the buyback
-wallet `0x17852f35b597554732C706A8A9FAA534C10e1E23` (pinned in `live/buyback.py` as `BUYBACK_WALLET`; the burn engine
+wallet `<our wallet, after launch>` (pinned in `live/buyback.py` as `BUYBACK_WALLET`; the burn engine
 calls it "the rat's wallet"): the LABRAT it holds came from the rat's hourly buybacks. Rat Tiles keeps driving those on
 `/buyback`; Rat Maze drives the burns on `/burn`. The buyback engine runs with `--tasks cursor,steer,tiles`, so a maze
 escape counts here and nowhere else (see "The buyback engine's `--tasks`" below).

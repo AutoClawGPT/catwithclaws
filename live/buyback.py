@@ -166,12 +166,13 @@ from eth_utils import keccak, to_checksum_address  # noqa: E402
 
 # ---------------------------------------------------------------------------------------------------- the pins
 CHAIN_ID = 4663
-SYMBOL = 'LABRAT'
-TOKEN = to_checksum_address('0xaCa07FE3BC5fF3e7501cA1dCCFCd937fD710680d')
-CURVE = to_checksum_address('0x174E4Cc2A44811Ed85eB2589C119B723a71AE024')
-WALLET = to_checksum_address('0x4C2661717B97cd23aa87Fe29fE0C50CFf2CBb893')   # launch wallet = creator = fee recipient
-# the separate buyback wallet the owner funds by hand: the buyer of every DRY simulated buy (no key here, ever)
-BUYBACK_WALLET = to_checksum_address('0x17852f35b597554732C706A8A9FAA534C10e1E23')
+SYMBOL = 'CATCLAWS'
+# Our token, curve, launch wallet, and buyback wallet are written here from our own pons receipt.
+# They stay empty until that launch. Another project's token is not pinned here.
+TOKEN = None
+CURVE = None
+WALLET = None
+BUYBACK_WALLET = None
 FACTORY = to_checksum_address(launcher.FACTORY)
 FEE_ESCROW = to_checksum_address('0xd3AFEB2a57f70eF218Aa82451c51B2fb0416Ac9e')
 HOOK = to_checksum_address('0xE5e702641Ea86F4ae6cC3cDaeD2B886f976Be044')
@@ -179,11 +180,11 @@ ROUTER = to_checksum_address('0x8876789976dEcBfCbBbe364623C63652db8C0904')
 QUOTER = to_checksum_address('0xe202BB8dd524eE9C5E679e5B5809f7A373a982Ef')
 ZERO = '0x0000000000000000000000000000000000000000'
 POOL_FEE, TICK_SPACING = 0, 200
-POOL_ID = '0xb0eb2633c73b39d2832643b62f54d99b71af752cf672df6b898a2210b8c2769d'
+POOL_ID = None   # our pool id, from our launch, not another token's pool
 POOL_KEY_T = '(address,address,uint24,int24,address)'
 
-RELAY_URL = 'wss://labrat-relay-production.up.railway.app/live'
-ORIGIN = 'https://lab-rat.net'
+RELAY_URL = 'wss://relay-production-ec04.up.railway.app/live'
+ORIGIN = 'https://catwithclaws.vercel.app'
 TASKS = ('lever', 'cursor', 'steer', 'tiles', 'maze')
 DEFAULT_TASKS = ('cursor', 'steer', 'tiles', 'maze')   # the tasks with a lit target (in Rat Maze: the cheese); the
                                                        # lever task only has a clean press

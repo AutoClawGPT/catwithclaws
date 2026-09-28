@@ -26,7 +26,7 @@ switches on both Railway services; see "Going live" at the end. The older fee-fu
 
 ## Who pays: the buyback wallet
 
-The owner funds a separate buyback wallet by hand: `0x17852f35b597554732C706A8A9FAA534C10e1E23`, pinned in the code as
+The owner funds a separate buyback wallet by hand: `<our wallet, after launch>`, pinned in the code as
 `BUYBACK_WALLET`. Every DRY buy is simulated from it. The engine holds no key for it (or for any wallet) and has no key
 handling for it. Only the buy rig can sign for it, and only with live bookings switched on ("Going live").
 
@@ -261,7 +261,7 @@ books a real buy).
      `buyrig/Dockerfile` and `buyrig/Dockerfile.dockerignore` into `~/claude/_deploy/labrat-buyrig/` (same paths; the
      Dockerfile now copies `live/buyrig_live.py` and fails the build without it), redeploy. The runner log says
      `LIVE: off (BUYRIG_LIVE is not 1); simulated sessions only`, and sessions stay "Simulated".
-2. **Fund the buyback wallet** `0x17852f35b597554732C706A8A9FAA534C10e1E23` by hand, from another wallet (receiving ETH
+2. **Fund the buyback wallet** `<our wallet, after launch>` by hand, from another wallet (receiving ETH
    does not change its nonce; do not send anything FROM it). At the owner's budget a perfect day is 2.4 ETH plus about
    0.0001 ETH of gas per buy. `python live/buyback.py --check` (read-only) prints `buyback_wallet_eth`.
 3. **`labrat-buyrig` → Variables**, all three, then redeploy:

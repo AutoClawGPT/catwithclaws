@@ -74,7 +74,7 @@ on the volume and are not published.
 
 The image now carries the LIVE path (`live/buyrig_live.py`), and it stays off until these three variables are set on
 this service: `BUYRIG_LIVE=1`, `BUYRIG_CONFIRM=LABRAT` and `BUYBACK_RH_KEY` (the key of the buyback wallet
-`0x17852f35b597554732C706A8A9FAA534C10e1E23`, nothing else is accepted). With any of them missing, every session runs
+`<our wallet, after launch>`, nothing else is accepted). With any of them missing, every session runs
 exactly as above. LIVE also refuses to run without a mounted volume at `/data` (its journal, `buyrig/live_journal.jsonl`,
 and one lock file per window make a second transaction for a window impossible). The engine must be in live bookings
 for there to be anything to buy. The steps, the order and how to stop are in `live/BUYBACK.md`, "Going live".

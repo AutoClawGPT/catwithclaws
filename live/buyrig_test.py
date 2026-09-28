@@ -549,11 +549,11 @@ p{margin:6px 0}
   <button class="ui-btn ui-btn-primary" disabled>Buy LABRAT</button>
 </div>
 <div class="mid">
-  <section><h3 data-ns>About</h3><p><span data-ns>Creator</span> <a href="/profile/0x4C2661717b97cd23aa87fe29fe0c50cff2cbb893" data-s>0x4C26…b893</a></p>
+  <section><h3 data-ns>About</h3><p><span data-ns>Creator</span> <a href="/profile/<our launch wallet, after launch>" data-s>0x4C26…b893</a></p>
     <button aria-label="Copy contract address" data-s>0xaCa0…680d</button></section>
   <section><h3>Creator fees</h3><div class="token-creator-fees-amount" data-s>4.460506 ETH</div>
     <p>Claimable now <span data-s>0.25 ETH</span> paid to <span data-s>0x4C26…b893</span></p></section>
-  <section><div>Holder fee sharing</div><p>Fees go to <span data-s>0x4C2661717b97cd23aa87fe29fe0c50cff2cbb893</span> holders earn <span data-s>1.2 ETH</span></p></section>
+  <section><div>Holder fee sharing</div><p>Fees go to <span data-s><our launch wallet, after launch></span> holders earn <span data-s>1.2 ETH</span></p></section>
   <table><tr><td><a href="/profile/0x1111111111111111111111111111111111111111" title="0x1111111111111111111111111111111111111111" data-s>0x1111…1111</a></td><td data-ns>0.0001 ETH</td></tr></table>
   <p id="split"><span data-ns>Wallet</span> <span data-s>0x6505</span><span data-s>…</span><span data-s>40dc</span></p>
   <div id="pons-v2-panel-holders" data-h><p>0x2222…2222 12,345 LABRAT</p></div>

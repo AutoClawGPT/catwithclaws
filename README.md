@@ -1,20 +1,15 @@
-# labrat
+# CatWithClaws
 
-A virtual rat's trained brain launches a coin on the real pons launchpad (Robinhood Chain). The rat's head
+A virtual cat's trained brain launches **our** coin on the real pons launchpad (Robinhood Chain). The cat's head
 steers the mouse cursor and its lever press is the click, for all 11 steps of the launch flow.
 
-**It is not a real rat brain.** It is two trained artificial neural networks driving a simulated rat body.
+**It is not a real cat brain.** It is two trained artificial neural networks driving a simulated body.
 
-## $LABRAT
+## $CATCLAWS
 
-On 2026-09-25 the rat launched **Labrat ($LABRAT)** on pons:
-
-- contract [`0xaCa07FE3BC5fF3e7501cA1dCCFCd937fD710680d`](https://robinhoodchain.blockscout.com/token/0xaCa07FE3BC5fF3e7501cA1dCCFCd937fD710680d)
-  · [on pons](https://www.ponsfamily.com/launchpad/0xaCa07FE3BC5fF3e7501cA1dCCFCd937fD710680d)
-- tx [`0x0f618ed9…1d26`](https://robinhoodchain.blockscout.com/tx/0x0f618ed9fa31c8ba5d224a620f514d3ff03504c7943a9e3ec937e316ea021d26), block 71684103
-- 11 of 11 targets clicked by the rat, 0 misses; the transaction passed 17 of 17 checks before it was signed once
-- the recorded session is in `runs/brainrig_20260924T211408Z_seed2026/`
-- website: **https://lab-rat.net**
+Not launched. https://catwithclaws.vercel.app shows Launching soon. There is no contract address until the cat
+signs our own pons transaction. After that, the contract, transaction, block, and pons link are written into
+`site/coin.js` from that receipt. No other project's token is used.
 
 ## The subject
 
@@ -87,7 +82,7 @@ Pillow, imageio. torch is only needed for training.
 
 ## The website and its live view
 
-Live at **https://lab-rat.net** (site on Vercel, relay on Railway at `labrat-relay-production.up.railway.app`).
+Live at **https://catwithclaws.vercel.app** (site on Vercel, relay on Railway at `relay-production-ec04.up.railway.app`).
 
 - `site/`: the static website (deployable to Vercel as is). Its 3D view plays a replay of a recorded launch session,
   a DRY rehearsal of the Labrat launch (`site/replay/session.bin` + `session.json`, made by
@@ -130,7 +125,7 @@ python train.py --task steer --name <new run> --curriculum ...        # any trai
 ```
 
 During real training: `python live/publish_training.py --watch runs --relay
-wss://labrat-relay-production.up.railway.app/publish` (token from `LABRAT_PUBLISH_TOKEN`), then train as usual.
+wss://relay-production-ec04.up.railway.app/publish` (token from `LABRAT_PUBLISH_TOKEN`), then train as usual.
 `live/start_live_feed.ps1 [-Python <path to python.exe>]` does the same in the background, reading the token from
 `.env` and logging to `runs/publisher.log`; it idles until a run's `log.jsonl` is being written.
 

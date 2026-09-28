@@ -1375,7 +1375,7 @@ class TestRelayOverWebsocket(Base):
         self.assertEqual(e.ledger.hits, 9, '2 + 3 + 4: the repeats after the reconnect were not counted again')
         self.assertEqual([r['n'] for r in records(e, 'hit')], [0, 1, 2])
         self.assertGreaterEqual(lis.connects, 2)
-        self.assertTrue(seen_origins and all(o == 'https://lab-rat.net' for o in seen_origins), seen_origins)
+        self.assertTrue(seen_origins and all(o == 'https://catwithclaws.vercel.app' for o in seen_origins), seen_origins)
         self.assertGreaterEqual(e.counter.stats['duplicates'], 3)
 
 
@@ -2303,7 +2303,7 @@ def load_recording(path):
 def fake_relay(port, items, pace):
     """A local relay on 127.0.0.1:<port>/live that plays a recording: the first connection gets the state, the click
     frames and episodes up to episode 3, then drops; the reconnect gets a state repeating episode 3, a resent
-    episode 2 (a publisher resync), then the rest and bye. Refuses any Origin but https://lab-rat.net."""
+    episode 2 (a publisher resync), then the rest and bye. Refuses any Origin but https://catwithclaws.vercel.app."""
     from websockets.sync.server import serve
     hello = next(p for k, p, _ in items if k == 'text' and '"hello"' in p)
     body = [(k, p, n) for k, p, n in items if not (k == 'text' and '"hello"' in p)]
@@ -2312,7 +2312,7 @@ def fake_relay(port, items, pace):
     conns = []
 
     def handler(ws):
-        if ws.request.headers.get('Origin') != 'https://lab-rat.net':
+        if ws.request.headers.get('Origin') != 'https://catwithclaws.vercel.app':
             ws.close(1008)
             return
         i = len(conns)
