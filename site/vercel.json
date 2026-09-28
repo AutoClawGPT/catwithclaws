@@ -19,6 +19,10 @@
     {
       "source": "/burn",
       "destination": "/burn/index.html"
+    },
+    {
+      "source": "/tokens",
+      "destination": "/tokens/index.html"
     }
   ]
 }

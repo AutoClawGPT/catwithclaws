@@ -5,23 +5,23 @@
 <base href="/">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>CatWithClaws · burn</title>
-<meta name="description" content="Cat burns for $CATCLAWS: one burn an hour, sized by C-01's escape rate at Cat Maze that hour, never more than 5% of the CATCLAWS the cat's wallet holds. Burns start soon.">
+<meta name="description" content="Cat burns for $CWCAI: one burn an hour, sized by C-01's escape rate at Cat Maze that hour, never more than 5% of the CWCAI the cat's wallet holds. Burns start soon.">
 <meta name="theme-color" content="#000000">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="CatWithClaws">
 <meta property="og:title" content="CatWithClaws · every escape, a burn">
-<meta property="og:description" content="A simulated cat with a brain of two trained neural networks runs a maze live. Each hour its escape rate sizes one $CATCLAWS burn: up to 5% of what its wallet holds.">
-<meta property="og:image" content="https://catwithclaws.vercel.app/assets/catwithclaws-logo.jpg">
+<meta property="og:description" content="A simulated cat with a brain of two trained neural networks runs a maze live. Each hour its escape rate sizes one $CWCAI burn: up to 5% of what its wallet holds.">
+<meta property="og:image" content="https://catwithclaws.vercel.app/assets/share.jpg">
 <meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="1254">
-<meta property="og:image:height" content="1254">
-<meta property="og:image:alt" content="The CatWithClaws logo: a pixel-art cat in yellow, pink and violet on black">
-<meta name="twitter:card" content="summary">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CatWithClaws share card: a pixel cat and $CWCAI">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="CatWithClaws · every escape, a burn">
-<meta name="twitter:description" content="A simulated cat runs a maze live. Each hour its escape rate sizes one $CATCLAWS burn: up to 5% of what its wallet holds.">
-<meta name="twitter:image" content="https://catwithclaws.vercel.app/assets/catwithclaws-logo.jpg">
-<meta name="twitter:image:alt" content="The CatWithClaws logo: a pixel-art cat in yellow, pink and violet on black">
+<meta name="twitter:description" content="A simulated cat runs a maze live. Each hour its escape rate sizes one $CWCAI burn: up to 5% of what its wallet holds.">
+<meta name="twitter:image" content="https://catwithclaws.vercel.app/assets/share.jpg">
+<meta name="twitter:image:alt" content="CatWithClaws share card: a pixel cat and $CWCAI">
 <link rel="icon" href="assets/catwithclaws-logo.jpg" type="image/jpeg">
 <link rel="apple-touch-icon" href="assets/catwithclaws-logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -115,6 +115,7 @@
       <a href="/burn#burns">Burns</a>
       <a href="/burn#how">How it works</a>
       <a href="/burn" aria-current="page">Burn</a>
+      <a href="/tokens">Tokens</a>
     </nav>
     <a class="nav-status conn" id="nav-status" href="/burn#maze" title="Status of the Cat Maze panel"><i></i><span id="nav-status-t">connecting</span></a>
     <a class="nav-gh" href="https://github.com/AutoClawGPT/catwithclaws" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-gh"/></svg><span>GitHub</span></a>
@@ -125,9 +126,9 @@
 <main id="main">
 <section class="hero trial" id="top">
   <div class="wrap wide trial-hd">
-    <p class="eyebrow"><span class="dot"></span>Burn &middot; Subject C-01 &middot; $CATCLAWS</p>
+    <p class="eyebrow"><span class="dot"></span>Burn &middot; Subject C-01 &middot; $CWCAI</p>
     <h1 class="trial-h">Every escape, a burn.</h1>
-    <p class="trial-lead">C-01 runs Cat Maze live below. Its escapes and timeouts are counted each hour; on the hour, its escape rate sets the size of one $CATCLAWS burn: up to 5% of the CATCLAWS the cat's wallet holds, sent out of circulation for good.</p>
+    <p class="trial-lead">C-01 runs Cat Maze live below. Its escapes and timeouts are counted each hour; on the hour, its escape rate sets the size of one $CWCAI burn: up to 5% of the CWCAI the cat's wallet holds, sent out of circulation for good.</p>
     <!-- site.js sets this from the burn engine's status: mode DRY keeps the text below, mode LIVE says "Burns live" -->
     <div class="bbk-banner" id="brn-banner" role="status">
       <span class="bbk-pill" id="brn-pill">Burns start soon</span>
@@ -136,7 +137,7 @@
     <div class="bbk-wallet" id="wallet">
       <span class="bbk-k">Burn wallet</span>
       <span class="bbk-addr">Added after our launch</span>
-      <p class="bbk-note">The cat's own wallet. Buybacks fill it with $CATCLAWS and burns send a share out of circulation. The address is written here from that wallet after the coin exists.</p>
+      <p class="bbk-note">The cat's own wallet. Buybacks fill it with $CWCAI and burns send a share out of circulation. The address is written here from that wallet after the coin exists.</p>
     </div>
   </div>
 
@@ -177,7 +178,7 @@
             </dl>
           </div>
           <p class="mz-sub" id="mz-sub"></p>
-          <p class="bb-note mz-how">No lever press is needed here: where C-01's head points is where the marker goes. Its network is told which of the four sides of its cell are open, the direction and rough distance to the cheese, its own speed and the last few cells it visited, as numbers. It never sees the whole map, and this view is our drawing of its simulation, not a picture it sees. Escaping earns a reward; every step, every bump into a wall and every dead end counts against it, and a maze that runs out of time ends without the cheese. Training starts with small open mazes and grows them as the cat improves.<span id="mz-bb" hidden> Each maze escaped raises this hour's escape rate and each one that runs out of time lowers it; on the hour, the cate sizes the $CATCLAWS burn below.</span></p>
+          <p class="bb-note mz-how">No lever press is needed here: where C-01's head points is where the marker goes. Its network is told which of the four sides of its cell are open, the direction and rough distance to the cheese, its own speed and the last few cells it visited, as numbers. It never sees the whole map, and this view is our drawing of its simulation, not a picture it sees. Escaping earns a reward; every step, every bump into a wall and every dead end counts against it, and a maze that runs out of time ends without the cheese. Training starts with small open mazes and grows them as the cat improves.<span id="mz-bb" hidden> Each maze escaped raises this hour's escape rate and each one that runs out of time lowers it; on the hour, the rate sizes the $CWCAI burn below.</span></p>
         </aside>
       </div>
     </section>
@@ -192,7 +193,7 @@
         <span class="bb-mode dry" id="brn-test" hidden>Test stream</span>
         <span class="bb-conn" id="brn-conn">loading</span>
       </div>
-      <p class="bb-rule">One $CATCLAWS burn an hour, sized by how well C-01 ran the maze that hour: <b>5% of the wallet's CATCLAWS &times; escape rate</b>. Escapes and timeouts are counted through the hour (escape rate = escapes &divide; both); on the hour, the cate sets the burn, and one transaction sends it out of circulation. The burn is never more than 5% of what the wallet holds in an hour, and an hour without an escape burns nothing. One burn an hour, instead of one per maze, keeps gas low.</p>
+      <p class="bb-rule">One $CWCAI burn an hour, sized by how well C-01 ran the maze that hour: <b>5% of the wallet's CWCAI &times; escape rate</b>. Escapes and timeouts are counted through the hour (escape rate = escapes &divide; both); on the hour, the rate sets the burn, and one transaction sends it out of circulation. The burn is never more than 5% of what the wallet holds in an hour, and an hour without an escape burns nothing. One burn an hour, instead of one per maze, keeps gas low.</p>
       <div class="bbh" aria-label="This hour">
         <div class="bbh-hd">
           <span class="bbh-k">This hour</span><span class="bbh-t" id="brn-win-t"></span>
@@ -223,8 +224,8 @@
       </div>
       <dl class="bb-kv bb-tot">
         <div><dt id="brn-burns-k">Simulated burns</dt><dd id="brn-burns">&mdash;</dd></div>
-        <div><dt id="brn-burned-k">CATCLAWS (simulated)</dt><dd id="brn-burned">&mdash;</dd></div>
-        <div><dt>Wallet holds (CATCLAWS)</dt><dd id="brn-bal">&mdash;</dd></div>
+        <div><dt id="brn-burned-k">CWCAI (simulated)</dt><dd id="brn-burned">&mdash;</dd></div>
+        <div><dt>Wallet holds (CWCAI)</dt><dd id="brn-bal">&mdash;</dd></div>
       </dl>
       <ol class="bb-list" id="brn-list" aria-label="Recent burns"></ol>
       <p class="bb-note" id="brn-note"></p>
@@ -235,15 +236,15 @@
 <section class="bbk-sec" id="how" aria-labelledby="how-h">
   <div class="wrap wide">
     <h2 id="how-h">How the burn works</h2>
-    <p class="bbk-lead">C-01 doesn't know what a token is. It runs a maze, and a fixed rule in the code turns how well it runs each hour into one $CATCLAWS burn from the cat's own wallet.</p>
+    <p class="bbk-lead">C-01 doesn't know what a token is. It runs a maze, and a fixed rule in the code turns how well it runs each hour into one $CWCAI burn from the cat's own wallet.</p>
     <ol class="bbk-steps">
       <li><b>It runs the maze live</b><span>C-01 plays Cat Maze while it trains: its head steers a marker through the corridors to the cheese at the exit. You can watch it above.</span></li>
       <li><b>Escapes and timeouts are counted each hour</b><span>Reaching the cheese is an escape. A maze that runs out of time is a timeout. The hour's escape rate is escapes &divide; (escapes + timeouts).</span></li>
-      <li><b>On the hour, the escape rate sets the burn</b><span>5% of the CATCLAWS in the cat's wallet at the hour's close &times; that hour's escape rate, rounded down. Never more than 5% in an hour; no escapes, no burn.</span></li>
+      <li><b>On the hour, the escape rate sets the burn</b><span>5% of the CWCAI in the cat's wallet at the hour's close &times; that hour's escape rate, rounded down. Never more than 5% in an hour; no escapes, no burn.</span></li>
       <li><b>One transaction sends it out of circulation</b><span>The same signer that sends the buybacks sends the burn, one an hour, through the token's own burn (so the supply falls) or, where a token has none, to the dead address. It is checked before it is signed.</span></li>
       <li><b>Verified on chain before it counts</b><span>A burn appears above only once its transaction is confirmed, with a link to it on the explorer. Until the rule is switched on, every burn is simulated: checked on the live chain, never sent.</span></li>
     </ol>
-    <p class="bbk-fine">The cat's brain is two trained artificial neural networks driving a simulated body, not a real cat. The same brain launched $CATCLAWS, plays for the buybacks on <a href="/buyback">the buyback page</a>, and its fingerprint is on-chain.</p>
+    <p class="bbk-fine">The cat's brain is two trained artificial neural networks driving a simulated body, not a real cat. The same brain launched $CWCAI, plays for the buybacks on <a href="/buyback">the buyback page</a>, and its fingerprint is on-chain.</p>
   </div>
 </section>
 
@@ -257,7 +258,7 @@
         <img class="brand-mark" src="assets/catwithclaws-logo.jpg" width="1254" height="1254" alt="" loading="lazy" decoding="async">
         <span class="brand-word">cat<b>claws</b></span>
       </a>
-      <p class="foot-honest">Subject C-01 is a simulated cat driven by two trained artificial neural networks. It is not a biological brain, and no animal was involved. CatWithClaws is an independent project, not affiliated with DeepMind, Robinhood or pons. Nothing on this site signs or sends a transaction. $CATCLAWS is an experiment, not financial advice.</p>
+      <p class="foot-honest">Subject C-01 is a simulated cat driven by two trained artificial neural networks. It is not a biological brain, and no animal was involved. CatWithClaws is an independent project, not affiliated with DeepMind, Robinhood or pons. Nothing on this site signs or sends a transaction. $CWCAI is an experiment, not financial advice.</p>
     </div>
     <div class="foot-cols">
       <div>
@@ -272,8 +273,8 @@
         <p class="foot-k">Links</p>
         <ul>
           <li><a href="https://github.com/AutoClawGPT/catwithclaws" target="_blank" rel="noopener">github.com/CatWithClawsDevRH/CatWithClaws</a></li>
-          <li class="if-soon">$CATCLAWS: launching soon</li>
-          <li class="if-live"><a class="js-pons" target="_blank" rel="noopener">$CATCLAWS on pons</a></li>
+          <li class="if-soon">$CWCAI: launching soon</li>
+          <li class="if-live"><a class="js-pons" target="_blank" rel="noopener">$CWCAI on pons</a></li>
           <li class="if-live"><a class="js-explorer" target="_blank" rel="noopener">Contract on the explorer</a></li>
         </ul>
       </div>
@@ -285,7 +286,7 @@
         </ul>
       </div>
     </div>
-    <p class="foot-base"><span>CatWithClaws &middot; operant lab &middot; Subject C-01</span><span class="mono if-soon">$CATCLAWS &middot; launching soon</span><span class="mono if-live">$CATCLAWS &middot; CA <span class="js-addr-short"></span></span></p>
+    <p class="foot-base"><span>CatWithClaws &middot; operant lab &middot; Subject C-01</span><span class="mono if-soon">$CWCAI &middot; launching soon</span><span class="mono if-live">$CWCAI &middot; CA <span class="js-addr-short"></span></span></p>
   </div>
 </footer>
 

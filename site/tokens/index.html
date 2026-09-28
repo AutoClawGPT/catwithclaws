@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<base href="/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CatWithClaws · tokens on pons</title>
+<meta name="description" content="Live tokens launched on pons, read from Robinhood Chain. CatWithClaws ($CWCAI) is listed here after our own launch.">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CatWithClaws">
+<meta property="og:title" content="CatWithClaws · tokens on pons">
+<meta property="og:description" content="Live tokens launched on pons, read from the Robinhood Chain factory.">
+<meta property="og:url" content="https://catwithclaws.vercel.app/tokens">
+<meta property="og:image" content="https://catwithclaws.vercel.app/assets/share.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CatWithClaws share card: a pixel cat and $CWCAI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CatWithClaws · tokens on pons">
+<meta name="twitter:description" content="Live tokens launched on pons, read from Robinhood Chain.">
+<meta name="twitter:image" content="https://catwithclaws.vercel.app/assets/share.jpg">
+<meta name="twitter:image:alt" content="CatWithClaws share card: a pixel cat and $CWCAI">
+<link rel="icon" href="assets/catwithclaws-logo.jpg" type="image/jpeg">
+<link rel="apple-touch-icon" href="assets/catwithclaws-logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/site.css">
+<style>
+.tok-hd{padding-top:28px}
+.tok-h{font-size:clamp(28px,3.6vw,48px);letter-spacing:-.02em;margin:8px 0}
+.tok-lead{max-width:760px;color:var(--dim);font-size:17px;line-height:1.55}
+.tok-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:22px}
+.tok{display:flex;gap:12px;padding:14px;border-radius:16px;background:var(--glass);border:1px solid var(--line-soft);text-decoration:none;color:inherit}
+.tok:hover{border-color:var(--gold)}
+.tok.ours{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.tok img{width:54px;height:54px;border-radius:12px;object-fit:cover;background:#000;flex:none}
+.tok b{display:block;font-size:16px}
+.tok .sym{color:var(--goldy);font:600 13px/1.2 var(--mono)}
+.tok p{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.4}
+.tok-meta{margin-top:8px;color:var(--dim);font:500 12px/1.4 var(--mono);word-break:break-all}
+.tok-more{margin:22px 0 40px}
+.tok-err{color:#ffb4b4}
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"><i class="neb n1"></i><i class="neb n2"></i><i class="neb n3"></i><i class="stars"></i></div>
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="/" aria-label="CatWithClaws, home">
+      <img class="brand-mark" src="assets/catwithclaws-logo.jpg" width="1254" height="1254" alt="" decoding="async">
+      <span class="brand-word">cat<b>claws</b></span>
+    </a>
+    <nav class="links" id="links" aria-label="Sections">
+      <a href="/">Home</a>
+      <a href="/buyback">Buyback</a>
+      <a href="/burn">Burn</a>
+      <a href="/tokens" aria-current="page">Tokens</a>
+    </nav>
+    <a class="nav-gh" href="https://github.com/AutoClawGPT/catwithclaws" target="_blank" rel="noopener">GitHub</a>
+    <button class="menu" id="menu" type="button" aria-expanded="false" aria-controls="links"><span class="menu-bars" aria-hidden="true"><i></i><i></i></span><span class="sr">Menu</span></button>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap tok-hd">
+    <p class="eyebrow"><span class="dot"></span>Pons · Robinhood Chain · $CWCAI</p>
+    <h1 class="tok-h">Tokens on pons</h1>
+    <p class="tok-lead">Every card is a real launch read from the Pons v2 factory on Robinhood Chain. $CWCAI appears in this list after our own launch. The feed is <a href="/api">/api</a>.</p>
+    <p id="tok-status" class="tok-lead">Loading the chain…</p>
+    <div class="tok-grid" id="tok-grid"></div>
+    <p class="tok-more"><button class="btn" id="tok-more" type="button" hidden>Load older launches</button></p>
+  </div>
+</main>
+<script>
+(function () {
+  var grid = document.getElementById('tok-grid');
+  var status = document.getElementById('tok-status');
+  var more = document.getElementById('tok-more');
+  var nextBefore = null;
+  function img(logo) {
+    if (!logo) return 'assets/catwithclaws-logo.jpg';
+    if (logo.indexOf('ipfs://') === 0) return 'https://ipfs.io/ipfs/' + logo.slice(7);
+    if (/^https:\/\//.test(logo)) return logo;
+    return 'assets/catwithclaws-logo.jpg';
+  }
+  function supply(wei, dec) {
+    try {
+      var n = BigInt(wei);
+      var d = 10n ** BigInt(dec || 18);
+      var whole = n / d;
+      return whole.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    } catch (e) { return '—'; }
+  }
+  function card(t) {
+    var a = document.createElement('a');
+    a.className = 'tok' + (t.ours ? ' ours' : '');
+    a.href = t.pons;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.innerHTML = '<img alt="" width="54" height="54">'
+      + '<span><b></b><span class="sym"></span><p></p><div class="tok-meta"></div></span>';
+    a.querySelector('img').src = img(t.logo);
+    a.querySelector('b').textContent = t.name || 'Unnamed';
+    a.querySelector('.sym').textContent = '$' + (t.symbol || '???') + (t.ours ? ' · ours' : '');
+    a.querySelector('p').textContent = (t.description || '').slice(0, 140);
+    a.querySelector('.tok-meta').textContent = t.token.slice(0, 6) + '…' + t.token.slice(-4)
+      + ' · supply ' + supply(t.supplyWei, t.decimals);
+    return a;
+  }
+  function load(before) {
+    var url = '/api?limit=24' + (before ? '&before=' + before : '');
+    status.textContent = before ? 'Loading older launches…' : 'Reading Robinhood Chain…';
+    fetch(url).then(function (r) { return r.json(); }).then(function (data) {
+      if (!data.ok) throw new Error(data.error || 'chain read failed');
+      data.tokens.forEach(function (t) { grid.appendChild(card(t)); });
+      nextBefore = data.nextBefore;
+      more.hidden = !nextBefore;
+      var ours = data.ourCoin;
+      status.textContent = data.tokens.length + ' launches' + (before ? ' more' : '')
+        + (ours ? '. $CWCAI is live.' : '. $CWCAI is not on chain yet.');
+    }).catch(function (e) {
+      status.textContent = 'Could not read the chain. ' + e.message;
+      status.className = 'tok-lead tok-err';
+    });
+  }
+  more.addEventListener('click', function () { if (nextBefore) load(nextBefore); });
+  load(null);
+})();
+</script>
+</body>
+</html>

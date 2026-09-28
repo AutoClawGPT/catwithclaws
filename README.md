@@ -5,7 +5,7 @@ steers the mouse cursor and its lever press is the click, for all 11 steps of th
 
 **It is not a real cat brain.** It is two trained artificial neural networks driving a simulated body.
 
-## $CATCLAWS
+## $CWCAI
 
 Not launched. https://catwithclaws.vercel.app shows Launching soon. There is no contract address until the cat
 signs our own pons transaction. After that, the contract, transaction, block, and pons link are written into

@@ -84,7 +84,7 @@ const RM = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : 
   });
 })();
 
-/* ------------------------------------------------------------------ the coin ($CATCLAWS), from coin.js
+/* ------------------------------------------------------------------ the coin ($CWCAI), from coin.js
    null (or anything without a real contract address): "Launching soon", no address, no links, no numbers.
    Set after the launch: the contract, pons and explorer links, the transaction and the block. Only the fields
    below are read. */
@@ -601,7 +601,7 @@ function relaySocket(h) {
 }
 
 /* ------------------------------------------------------------------ the cat on pons (the relay's pons channel)
-   The buy rig (live/buyrig.py) streams the real pons page while the cat clicks through a $CATCLAWS buy: masked JPEG
+   The buy rig (live/buyrig.py) streams the real pons page while the cat clicks through a $CWCAI buy: masked JPEG
    frames (b"PJPG" + JPEG) and messages marked "channel":"pons" (pons_hello / pons_step / pons_result / pons_bye from the
    rig, pons_state / pons_idle from the relay). They come on the same relay socket as the 3D view (live.js hands them
    over); if the 3D view cannot start, or is torn down, this panel opens a socket of its own.
@@ -638,7 +638,7 @@ const PONS = (function ratOnPons() {
     b02_terms_privacy: { name: 'Privacy Policy checkbox', kind: 'terms' },
     b03_accept: { name: 'Accept and continue', kind: 'accept' },
     b04_amount: { name: 'Amount field', kind: 'amount' },
-    b05_buy: { name: 'Buy CATCLAWS', kind: 'buy' },
+    b05_buy: { name: 'Buy CWCAI', kind: 'buy' },
     b06_confirm: { name: 'Confirm buy', kind: 'confirm' },
   };
   const own = (o, k) => (typeof k === 'string' && Object.prototype.hasOwnProperty.call(o, k)) ? o[k] : undefined;
@@ -748,7 +748,7 @@ const PONS = (function ratOnPons() {
              bb && bb.mode === 'LIVE');
   }
   function buyLine(sim, eth, out) {
-    return (sim ? 'Simulated buy' : 'Buy') + (eth ? ' · ' + eth + ' ETH' : '') + (out ? ' → ' + out + ' CATCLAWS' : '');
+    return (sim ? 'Simulated buy' : 'Buy') + (eth ? ' · ' + eth + ' ETH' : '') + (out ? ' → ' + out + ' CWCAI' : '');
   }
   function clicksText(hits, misses) {
     if (hits === null) return '';
@@ -798,7 +798,7 @@ const PONS = (function ratOnPons() {
     else if (live && test) cap = 'Recorded session';
     put(E.cap, cap); E.cap.hidden = !cap;
     if (!S.open && !S.hasFrame) { put(E.emptyT, 'Connecting'); put(E.emptyS, ''); }
-    else if (live) { put(E.emptyT, 'Opening the $CATCLAWS page on pons'); put(E.emptyS, 'the first frame appears in a moment'); }
+    else if (live) { put(E.emptyT, 'Opening the $CWCAI page on pons'); put(E.emptyS, 'the first frame appears in a moment'); }
     else { put(E.emptyT, 'The next session streams here'); put(E.emptyS, 'live, as the cat clicks through the buy'); }
 
     // the session: where the cat is, or how it ended
@@ -814,7 +814,7 @@ const PONS = (function ratOnPons() {
       else if (st && (st.i || st.name)) {
         target = (st.i && st.total ? 'Target ' + st.i + ' of ' + st.total : 'Target') + (st.name ? ' · ' + st.name : '');
         phase = st.phase;
-      } else target = 'Opening the $CATCLAWS page on pons';
+      } else target = 'Opening the $CWCAI page on pons';
     } else if (h) {
       k = 'Last session' + (hhmm(h.started) ? ' · ' + hhmm(h.started) : '');
       target = res ? (res.ok ? buyLine(sim, res.eth, res.out) : 'No buy this session: ' + res.why) : 'The session ended before a result';
@@ -845,7 +845,7 @@ const PONS = (function ratOnPons() {
     put(E.amtK, 'Buy size' + (hr !== null ? ' · hit rate ' + (hr * 100).toFixed(hr === 1 || hr === 0 ? 0 : 1) + '%'
       : hits ? ' · ' + hits + ' hits' : ''));
     put(E.amt, amt ? amt + ' ETH' : '—');
-    put(E.outK, sim ? 'CATCLAWS (simulated)' : 'CATCLAWS bought');
+    put(E.outK, sim ? 'CWCAI (simulated)' : 'CWCAI bought');
     put(E.out, res && res.ok && res.out ? res.out : bbp && bbp.out ? bbp.out : live && !res ? 'pending' : '—');
     put(E.checks, res && res.checks ? res.checks : bbp && bbp.checks ? bbp.checks : live ? 'pending' : '—');
     put(E.clicks, (res && res.final && clicksText(res.hits, res.misses)) || (bbp && clicksText(bbp.hits, bbp.misses)) ||
@@ -2009,7 +2009,7 @@ const TILES = (function ratTiles() {
    interpolating the marker between snapshots, and keeps the score.
    Honesty: LIVE only when the relay reports a live training run on the channel; a test stream is labelled as one; every
    value from the stream is checked before it is drawn or written. The home page only has the teaser (#mz-teaser); the
-   panel lives on /burn, where each hour's escape rate sizes the hour's $CATCLAWS burn (onBurn shows that sentence once the
+   panel lives on /burn, where each hour's escape rate sizes the hour's $CWCAI burn (onBurn shows that sentence once the
    burn engine's status has been read). On a page without the live panel this panel also sets the nav's status chip. */
 const MAZE = (function ratMaze() {
   const teaser = $('#mz-teaser'), teaserSt = $('#mz-teaser-st');
@@ -2847,7 +2847,7 @@ const MAZE = (function ratMaze() {
   const BN = { box: $('#bbk-banner'), pill: $('#bbk-pill'), text: $('#bbk-banner-t') };
   const BANNER_DRY = BN.pill && BN.text ? { pill: BN.pill.textContent, text: BN.text.textContent } : null;
   const BANNER_LIVE = { pill: 'Buybacks live',
-    text: 'Every hour, the cat clicks that hour’s $CATCLAWS buyback through on the real pons page. The rig checks ' +
+    text: 'Every hour, the cat clicks that hour’s $CWCAI buyback through on the real pons page. The rig checks ' +
           'the transaction before it is sent from the buyback wallet below, and every buy is verified on chain and ' +
           'linked to its transaction on the explorer.' };
   const TX = /^0x[0-9a-f]{64}$/;                           // a transaction hash, and nothing else, becomes a link
@@ -2904,13 +2904,13 @@ const MAZE = (function ratMaze() {
     if (exK && exL) {
       exK.hidden = exL.hidden = exN === 0;
       if (exN > 0) {
-        exK.textContent = 'Executed buybacks · ' + exN + ' · ' + (dec(ex.eth_in) || '—') + ' ETH → ' + fmtTok(ex.labrat_out) + ' CATCLAWS';
+        exK.textContent = 'Executed buybacks · ' + exN + ' · ' + (dec(ex.eth_in) || '—') + ' ETH → ' + fmtTok(ex.labrat_out) + ' CWCAI';
         exL.innerHTML = exRecent.slice(0, 12).map(r => {
           if (!r || typeof r !== 'object' || r.simulated !== false || !TX.test(r.tx || '')) return '';
           const at = typeof r.at === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(r.at) ? r.at.slice(0, 16).replace('T', ' ') + ' UTC' : '';
           const rate = typeof r.hit_rate === 'number' ? ' · hit rate ' + Math.round(r.hit_rate * 1000) / 10 + '%' : '';
           return '<li><span class="bb-t">' + esc(at) + '</span><span>buy: ' + esc(fmtEth(r.eth_in)) + ' &rarr; ' + esc(fmtTok(r.labrat_out)) +
-            ' CATCLAWS <em>clicked by the cat on pons</em>' + esc(rate) + ' ' + txLink(r.tx) + '</span></li>';
+            ' CWCAI <em>clicked by the cat on pons</em>' + esc(rate) + ' ' + txLink(r.tx) + '</span></li>';
         }).join('');
       }
     }
@@ -2980,13 +2980,13 @@ const MAZE = (function ratMaze() {
       const tok = dec(lb.labrat_out) && Number(lb.labrat_out) > 0 ? fmtTok(lb.labrat_out) : '';
       const kind = prev ? 'simulated preview buy' : sim ? 'simulated buy' : 'buy';
       let line = '';
-      if (bought) line = 'Buy: ' + (eth ? eth + ' ETH' : '') + (tok ? ' → ' + tok + ' CATCLAWS' : '');
-      else if (lb.state === 'simulated') line = kind[0].toUpperCase() + kind.slice(1) + ': ' + (eth ? eth + ' ETH' : '') + (tok ? ' → ' + tok + ' CATCLAWS' : '');
+      if (bought) line = 'Buy: ' + (eth ? eth + ' ETH' : '') + (tok ? ' → ' + tok + ' CWCAI' : '');
+      else if (lb.state === 'simulated') line = kind[0].toUpperCase() + kind.slice(1) + ': ' + (eth ? eth + ' ETH' : '') + (tok ? ' → ' + tok + ' CWCAI' : '');
       else if (live && lb.state === 'booked') line = (eth ? 'Buy of ' + eth + ' ETH booked' : 'Buy booked') + ': the cat clicks it through on pons, not executed yet';
       else if (lb.state === 'due') line = (eth ? kind[0].toUpperCase() + kind.slice(1) + ' of ' + eth + ' ETH booked' : 'Buy booked') + ': the cat clicks it through on pons next';
       else if (lb.state === 'expired') line = (live ? 'The hour’s buy was not executed in time' : 'The hour’s buy was not completed in time') + (why ? ': ' + why : '');
       else if (lb.state === 'none' || (!eth && Object.keys(lb).length)) line = 'No buy this hour' + (why ? ': ' + why : '');
-      else if (eth && !live) line = kind[0].toUpperCase() + kind.slice(1) + ': ' + eth + ' ETH' + (tok ? ' → ' + tok + ' CATCLAWS' : '');
+      else if (eth && !live) line = kind[0].toUpperCase() + kind.slice(1) + ': ' + eth + ' ETH' + (tok ? ' → ' + tok + ' CWCAI' : '');
       const p = obj(lb.pons);
       if (line && p && p.clicked_by_rat === true && (bought || lb.simulated !== false)) line += ' · clicked through by the cat on pons';
       E.lastBuy.innerHTML = esc(line) + (bought ? ' · ' + txLink(lb.tx) : '');
@@ -2997,7 +2997,7 @@ const MAZE = (function ratMaze() {
     const h = obj(j.hits) || {};
     E.hits.textContent = int(h.counted) !== null ? fmtN(h.counted) : '—';
     E.buysK.textContent = simulated ? 'Simulated buys' : 'Buys';
-    E.outK.textContent = simulated ? 'CATCLAWS (simulated)' : 'CATCLAWS bought';
+    E.outK.textContent = simulated ? 'CWCAI (simulated)' : 'CWCAI bought';
     E.buys.textContent = int(b.count) !== null ? b.count + (dec(b.eth_in) ? ' · ' + b.eth_in + ' ETH' : '') : '—';
     E.out.textContent = fmtTok(b.labrat_out);
     const recent = Array.isArray(b.recent) ? b.recent.slice(0, 5) : [];
@@ -3016,7 +3016,7 @@ const MAZE = (function ratMaze() {
           '</span></li>';
       }
       return '<li><span class="bb-t">' + esc(at) + '</span><span>' + (sim ? 'simulated buy' : 'buy') + ': ' +
-        esc(fmtEth(r.eth_in)) + ' &rarr; ' + esc(fmtTok(r.labrat_out)) + ' CATCLAWS' + rate +
+        esc(fmtEth(r.eth_in)) + ' &rarr; ' + esc(fmtTok(r.labrat_out)) + ' CWCAI' + rate +
         (r.preview === true ? ' <em>preview amount</em>' : '') +
         (venue ? ' <em>' + venue + '</em>' : '') +
         (obj(r.pons) && r.pons.clicked_by_rat === true ? ' <em>clicked by the cat on pons</em>' : '') +
@@ -3035,7 +3035,7 @@ const MAZE = (function ratMaze() {
       (test ? 'These counts come from a test stream. ' : '') +
       (stopped ? 'Buys stopped: ' + stopped + '. ' : '') +
       (simulated ? 'Buybacks shown are simulated against the live chain: checked, not sent. '
-                 : 'A buy counts only once its transaction is verified on chain: sent from the buyback wallet, to the pons pool, for the booked amount, with the CATCLAWS received. ') +
+                 : 'A buy counts only once its transaction is verified on chain: sent from the buyback wallet, to the pons pool, for the booked amount, with the CWCAI received. ') +
       'Hits, misses and off-tile presses are counted as each training attempt ends; one buy an hour, on the hour (UTC).';
     tick();
   }
@@ -3064,7 +3064,7 @@ const MAZE = (function ratMaze() {
 
 /* ------------------------------------------------------------------ rat burns (burn.js, the /burn page)
    Reads the burn engine's public status JSON (live/burn.py). One burn an hour, on the hour (UTC), sized by that hour's
-   escape rate at Cat Maze: burn = floor(burn share x the wallet's CATCLAWS balance at the hour's close x escape rate),
+   escape rate at Cat Maze: burn = floor(burn share x the wallet's CWCAI balance at the hour's close x escape rate),
    escape rate = escapes / (escapes + timeouts), the share at most 5% (a hard ceiling in the engine).
      mode         "DRY" (simulated: each burn is checked with eth_call, never sent) or "LIVE" (real bookings)
      window       {start, end, escapes, timeouts, escape_rate, wallet_balance, projected_burn}   the hour being counted
@@ -3072,7 +3072,7 @@ const MAZE = (function ratMaze() {
      totals       {burned, burns};  next_burn_at (ISO) / next_burn_in_s;  budget {pct, rule} or rule (text)
      burns        {recent: [{at, window, amount, escape_rate, state, tx, simulated}], simulated}  (or recent at the top)
      relay {connected, counting, test_stream}, source {public_relay, test}, stopped, updated
-   Amounts are whole CATCLAWS, as decimal strings or numbers. Anything absent renders as a dash.
+   Amounts are whole CWCAI, as decimal strings or numbers. Anything absent renders as a dash.
    Every figure carries its mode: anything not executed on-chain is labelled "Simulated" and never called a burn; a
    test stream is never called live; a stale status is shown as stale; no address-like string is ever shown.
    LIVE (mode "LIVE"): each hour's burn is booked (state "booked": not executed yet, never shown as burned) and executed
@@ -3092,7 +3092,7 @@ const MAZE = (function ratMaze() {
   const txt = s => (typeof s === 'string' && !ADDR.test(s)) ? s : null;
   const int = v => (Number.isInteger(v) && v >= 0) ? v : null;
   const obj = v => (v && typeof v === 'object' && !Array.isArray(v)) ? v : null;
-  // an amount of CATCLAWS: a decimal string or a finite number, never negative
+  // an amount of CWCAI: a decimal string or a finite number, never negative
   const amt = v => typeof v === 'number' ? (Number.isFinite(v) && v >= 0 ? v : null)
     : (typeof v === 'string' && /^\d{1,24}(\.\d{1,18})?$/.test(v)) ? Number(v) : null;
   const isoMs = s => (typeof s === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d{1,6})?)?Z$/.test(s)) ? Date.parse(s) : NaN;
@@ -3133,7 +3133,7 @@ const MAZE = (function ratMaze() {
   const BN = { box: $('#brn-banner'), pill: $('#brn-pill'), text: $('#brn-banner-t') };
   const BANNER_DRY = BN.box && BN.pill && BN.text ? { pill: BN.pill.textContent, text: BN.text.textContent } : null;
   const BANNER_LIVE = { pill: 'Burns live',
-    text: 'Every hour, one $CATCLAWS burn is sent from the cat’s wallet below, sized by that hour’s escape rate at Cat Maze ' +
+    text: 'Every hour, one $CWCAI burn is sent from the cat’s wallet below, sized by that hour’s escape rate at Cat Maze ' +
           'and never more than 5% of what the wallet holds. Each burn is verified on chain and linked to its transaction ' +
           'on the explorer.' };
   const TX = /^0x[0-9a-f]{64}$/;                           // a transaction hash, and nothing else, becomes a link
@@ -3201,19 +3201,19 @@ const MAZE = (function ratMaze() {
     const rate = rateOf(w);
     E.wRate.textContent = pctTxt(rate);
 
-    // the rule, with this hour's numbers: the wallet's CATCLAWS x the burn share x the escape rate
+    // the rule, with this hour's numbers: the wallet's CWCAI x the burn share x the escape rate
     const bal = w ? amt(w.wallet_balance) : null;
-    E.fBal.textContent = bal !== null ? fmtTok(bal) + ' CATCLAWS' : '—';
+    E.fBal.textContent = bal !== null ? fmtTok(bal) + ' CWCAI' : '—';
     E.fBalSub.textContent = bal !== null ? 'in the cat’s wallet now' : '';
     E.fPct.textContent = shareTxt(share);
     E.fRate.textContent = pctTxt(rate);
     const proj = w ? amt(w.projected_burn) : null;
     const est = proj !== null ? proj : bal !== null && rate !== null ? Math.floor(bal * share / 100 * rate) : null;
     E.fK.textContent = (simulated ? 'Simulated burn' : 'Burn') + ' on the hour';
-    E.fBurn.textContent = est !== null ? (proj !== null ? '' : '≈ ') + fmtTok(est) + ' CATCLAWS' : '—';
+    E.fBurn.textContent = est !== null ? (proj !== null ? '' : '≈ ') + fmtTok(est) + ' CWCAI' : '—';
     E.fNote.textContent = est !== null
       ? 'At this hour’s escape rate so far; the burn is sized when the hour closes, from the balance then, and never exceeds ' + shareTxt(share) + ' of it.'
-      : 'Sized when the hour closes: ' + shareTxt(share) + ' of the wallet’s CATCLAWS × that hour’s escape rate. No escapes, no burn.';
+      : 'Sized when the hour closes: ' + shareTxt(share) + ' of the wallet’s CWCAI × that hour’s escape rate. No escapes, no burn.';
 
     // the last hour
     const lw = obj(j.last_window);
@@ -3223,12 +3223,12 @@ const MAZE = (function ratMaze() {
       E.lastK.textContent = 'Last hour' + (Number.isFinite(ls) && Number.isFinite(le) ? ' · ' + hm(ls) + '–' + hm(le) + ' UTC' : '');
       const lr = rateOf(lw), lbal = amt(lw.wallet_balance);
       E.lastStats.textContent = [int(lw.escapes) !== null ? fmtN(lw.escapes) + ' escaped' : '', int(lw.timeouts) !== null ? fmtN(lw.timeouts) + ' timed out' : '',
-        'escape rate ' + pctTxt(lr), lbal !== null ? 'wallet held ' + fmtTok(lbal) + ' CATCLAWS' : ''].filter(Boolean).join(' · ');
+        'escape rate ' + pctTxt(lr), lbal !== null ? 'wallet held ' + fmtTok(lbal) + ' CWCAI' : ''].filter(Boolean).join(' · ');
       // its burn: {state: due | simulated | booked | executed | burned | none | expired, note, amount, simulated, tx (LIVE, once verified)}
       const lb = obj(lw.burn) || {};
       const why = [lb.note, lw.note].map(safeNote).find(Boolean) || '';
       const burned = live && lb.simulated === false && DONE.has(lb.state) && TX.test(lb.tx || '');
-      const a = amt(lb.amount), aTxt = a !== null ? fmtTok(a) + ' CATCLAWS' : '';
+      const a = amt(lb.amount), aTxt = a !== null ? fmtTok(a) + ' CWCAI' : '';
       let line = '';
       if (burned) line = 'Burned: ' + aTxt;
       else if (lb.state === 'simulated') line = 'Simulated burn: ' + (aTxt || '—') + ' · checked on the live chain, not sent';
@@ -3244,7 +3244,7 @@ const MAZE = (function ratMaze() {
     // totals
     const nb = int(tot.burns), burnedTot = amt(tot.burned);
     E.tBurnsK.textContent = simulated ? 'Simulated burns' : 'Burns';
-    E.tBurnedK.textContent = simulated ? 'CATCLAWS (simulated)' : 'CATCLAWS burned';
+    E.tBurnedK.textContent = simulated ? 'CWCAI (simulated)' : 'CWCAI burned';
     E.tBurns.textContent = nb !== null ? fmtN(nb) : '—';
     E.tBurned.textContent = fmtTok(burnedTot);
     E.tBal.textContent = bal !== null ? fmtTok(bal) : '—';
@@ -3257,7 +3257,7 @@ const MAZE = (function ratMaze() {
       const at = txt(r.at) && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?Z$/.test(r.at) ? r.at.slice(11, 16) + ' UTC' : '';
       const rr = rate01(r.escape_rate);
       const rateT = rr !== null ? ' <em>(escape rate ' + esc(pctTxt(rr)) + ')</em>' : '';
-      const a = amt(r.amount), aTxt = a !== null ? fmtTok(a) + ' CATCLAWS' : '—';
+      const a = amt(r.amount), aTxt = a !== null ? fmtTok(a) + ' CWCAI' : '—';
       if (!sim && !executed) {             // LIVE, booked or expired: never shown as burned
         const what = r.state === 'expired' ? 'not executed' : 'booked, not executed yet';
         return '<li><span class="bb-t">' + esc(at) + '</span><span>' + esc(aTxt) + ' burn ' + what + rateT + '</span></li>';
@@ -3278,7 +3278,7 @@ const MAZE = (function ratMaze() {
       (stopped ? 'Burns stopped: ' + stopped + '. ' : '') +
       (simulated ? 'Burns shown are simulated against the live chain: checked, not sent. '
                  : 'A burn counts only once its transaction is verified on chain: sent from the cat’s wallet, for the booked amount, out of circulation. ') +
-      'Escapes and timeouts are counted as each maze ends; one burn an hour, on the hour (UTC), never more than ' + shareTxt(share) + ' of the wallet’s CATCLAWS.';
+      'Escapes and timeouts are counted as each maze ends; one burn an hour, on the hour (UTC), never more than ' + shareTxt(share) + ' of the wallet’s CWCAI.';
     tick();
   }
 

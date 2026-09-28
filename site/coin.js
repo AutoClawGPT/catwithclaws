@@ -1,4 +1,4 @@
-/* CatWithClaws site: the main coin, $CATCLAWS.
+/* CatWithClaws site: the main coin, $CWCAI.
  *
  * null until the cat has launched it. While it is null the page shows "Launching soon".
  */

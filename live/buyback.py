@@ -166,7 +166,7 @@ from eth_utils import keccak, to_checksum_address  # noqa: E402
 
 # ---------------------------------------------------------------------------------------------------- the pins
 CHAIN_ID = 4663
-SYMBOL = 'CATCLAWS'
+SYMBOL = 'CWCAI'
 # Our token, curve, launch wallet, and buyback wallet are written here from our own pons receipt.
 # They stay empty until that launch. Another project's token is not pinned here.
 TOKEN = None
