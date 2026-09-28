@@ -11,7 +11,7 @@
  * A value set on window.LABRAT_RELAY before this file loads wins.
  */
 (function () {
-  var RELAY = '';   // the public relay (Railway)
+  var RELAY = 'wss://relay-production-ec04.up.railway.app/live';   // the public relay (Railway)
 
   if (window.LABRAT_RELAY) return;
   var host = location.hostname;
