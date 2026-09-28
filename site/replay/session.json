@@ -1,7 +1,7 @@
 {
  "format": "labrat-replay-1",
  "source": "replay",
- "label": "Replay: the Labrat launch, recorded 2026-09-25",
+ "label": "$CWCAI launch · CatWithClawsAi · 2026-09-28 · block 74475096",
  "session": "launch",
  "task": "steer",
  "run": "brainrig_20260924T211408Z_seed2026",
@@ -12,7 +12,7 @@
  "sim_seconds": 82.04,
  "brain_on_at": 2.0,
  "loop_end": 56.65,
- "loop_note": "after the last event the rat only stands while the rig finishes; a player may loop at loop_end",
+ "loop_note": "after the last event the cat only stands while the rig finishes; a player may loop at loop_end",
  "file": "session.bin",
  "bytes": 3065388,
  "sha256": "2b2aa30494dec7a6d236528f4ebc7798a1389b0983bb6098558c04e8ef4a3b2b",
@@ -61,7 +61,7 @@
   42.12,
   46.12
  ],
- "resets_note": "between targets the rig starts a new trial: the rat is put back in its standing start pose and rests while the rig types, scrolls or pons is busy (do not interpolate across)",
+ "resets_note": "between targets the rig starts a new trial: the cat is put back in its standing start pose and rests while the rig types, scrolls or pons is busy (do not interpolate across)",
  "targets": [
   {
    "n": 1,
@@ -217,7 +217,7 @@
    "misses_before": 0,
    "lights": 1,
    "state": "done",
-   "typed": "Labrat",
+   "typed": "CatWithClawsAi",
    "typing_seconds": 0.6,
    "typed_from": 16.16,
    "typed_until": 16.76
@@ -252,7 +252,7 @@
    "misses_before": 0,
    "lights": 1,
    "state": "done",
-   "typed": "LABRAT",
+   "typed": "CWCAI",
    "typing_seconds": 0.6,
    "typed_from": 17.96,
    "typed_until": 18.56
@@ -443,7 +443,7 @@
    "kind": "click",
    "target": 1,
    "exact": true,
-   "text": "The rat clicks it (lever press) after 1.00 s"
+   "text": "The cat clicks it (lever press) after 1.00 s"
   },
   {
    "t": 4.34,
@@ -457,7 +457,7 @@
    "kind": "click",
    "target": 2,
    "exact": true,
-   "text": "The rat clicks it (lever press) after 0.34 s"
+   "text": "The cat clicks it (lever press) after 0.34 s"
   },
   {
    "t": 5.2,
@@ -471,7 +471,7 @@
    "kind": "click",
    "target": 3,
    "exact": true,
-   "text": "The rat clicks it (lever press) after 0.66 s"
+   "text": "The cat clicks it (lever press) after 0.66 s"
   },
   {
    "t": 6.54,
@@ -485,7 +485,7 @@
    "kind": "click",
    "target": 4,
    "exact": true,
-   "text": "The rat clicks it (lever press) after 0.38 s"
+   "text": "The cat clicks it (lever press) after 0.38 s"
   },
   {
    "t": 15.0,
@@ -505,7 +505,7 @@
    "kind": "click",
    "target": 5,
    "exact": true,
-   "text": "The rat clicks it (lever press) after 0.46 s"
+   "text": "The cat clicks it (lever press) after 0.46 s"
   },
   {
    "t": 16.16,
@@ -513,7 +513,7 @@
    "target": 5,
    "exact": false,
    "until": 16.76,
-   "text": "The rig types \"Labrat\" into the field the rat clicked"
+   "text": "The rig types \"CatWithClawsAi\" into the field the cat clicked"
   },
   {
    "t": 16.92,
@@ -527,7 +527,7 @@
    "kind": "click",
    "target": 6,
    "exact": true,
-   "text": "The rat clicks it (lever press) after 0.50 s"
+   "text": "The cat clicks it (lever press) after 0.50 s"
   },
   {
    "t": 17.96,
@@ -535,7 +535,7 @@
    "target": 6,
    "exact": false,
    "until": 18.56,
-   "text": "The rig types \"LABRAT\" into the field the rat clicked"
+   "text": "The rig types \"CWCAI\" into the field the cat clicked"
   },
   {
    "t": 18.72,
@@ -549,7 +549,7 @@
    "kind": "click",
    "target": 7,
    "exact": true,
-   "text": "The rat clicks it (lever press) after 0.52 s"
+   "text": "The cat clicks it (lever press) after 0.52 s"
   },
   {
    "t": 19.76,
@@ -557,13 +557,13 @@
    "target": 7,
    "exact": false,
    "until": 36.42,
-   "text": "The rig types the description, with the brain fingerprint, into the field the rat clicked"
+   "text": "The rig types the description, with the brain fingerprint, into the field the cat clicked"
   },
   {
    "t": 36.42,
    "kind": "scroll",
    "exact": false,
-   "text": "The rig scrolls the page to the next target; the rat waits"
+   "text": "The rig scrolls the page to the next target; the cat waits"
   },
   {
    "t": 37.94,
@@ -577,7 +577,7 @@
    "kind": "click",
    "target": 8,
    "exact": true,
-   "text": "The rat clicks it (lever press) after 0.24 s"
+   "text": "The cat clicks it (lever press) after 0.24 s"
   },
   {
    "t": 39.0,
@@ -591,7 +591,7 @@
    "kind": "click",
    "target": 9,
    "exact": true,
-   "text": "The rat clicks it (lever press) after 0.50 s"
+   "text": "The cat clicks it (lever press) after 0.50 s"
   },
   {
    "t": 40.03,
@@ -599,13 +599,13 @@
    "target": 9,
    "exact": false,
    "until": 40.13,
-   "text": "The rig types our setting into the field the rat clicked"
+   "text": "The rig types our setting into the field the cat clicked"
   },
   {
    "t": 40.14,
    "kind": "scroll",
    "exact": false,
-   "text": "The rig scrolls the page to the next target; the rat waits"
+   "text": "The rig scrolls the page to the next target; the cat waits"
   },
   {
    "t": 41.66,
@@ -619,7 +619,7 @@
    "kind": "click",
    "target": 10,
    "exact": true,
-   "text": "The rat clicks it (lever press) after 0.46 s"
+   "text": "The cat clicks it (lever press) after 0.46 s"
   },
   {
    "t": 45.22,
@@ -633,7 +633,7 @@
    "kind": "click",
    "target": 11,
    "exact": true,
-   "text": "The rat clicks it (lever press) after 0.90 s"
+   "text": "The cat clicks it (lever press) after 0.90 s"
   },
   {
    "t": 46.72,
@@ -657,13 +657,13 @@
    "t": 50.46,
    "kind": "tx_sent",
    "exact": false,
-   "text": "Sent to Robinhood Chain"
+   "text": "Sent to Robinhood Chain: 0xa5359c21c84f774843465a77f56a81b9280df6cce2087d53266220291dcf8323"
   },
   {
    "t": 52.65,
    "kind": "tx_mined",
    "exact": false,
-   "text": "Mined on Robinhood Chain: the coin exists"
+   "text": "Mined on Robinhood Chain, block 74475096. $CWCAI is 0xD470bc0f9bf4e7Bd6e009151a1e7eea86d428571"
   }
  ],
  "timeline_note": "brain_on, lit and click times are exact (from the command log); typing, image, scroll and transaction times come from the rig's wall clock mapped onto the replay (within about 0.01 s)",
@@ -734,7 +734,7 @@
    "mujoco": "3.13.0"
   }
  },
- "honesty": "A replay, not live. This clip re-simulates a recorded launch session from its saved brain and command log, and reproduces the recording bit for bit. The brain is two trained artificial neural networks driving a simulated rat body (DeepMind's open-source rodent model in MuJoCo), not a biological brain. The rig lit each target, forwarded only on-target clicks and typed a field's text after the rat clicked into it; the rat did every click, not the typing.",
+ "honesty": "A replay, not live. This clip re-simulates a recorded launch session from its saved brain and command log, and reproduces the recording bit for bit. The brain is two trained artificial neural networks driving a simulated body (DeepMind's open-source rodent model in MuJoCo), not a biological brain. The rig lit each target, forwarded only on-target clicks and typed a field's text after the cat clicked into it; the cat did every click, not the typing.",
  "credits": {
   "body": "DeepMind rodent model (dm_control, Apache-2.0), the rat from Aldarondo et al., Nature 2024",
   "physics": "MuJoCo"

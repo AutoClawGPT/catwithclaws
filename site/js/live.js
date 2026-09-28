@@ -72,11 +72,11 @@ const TIERS = [
 const PAL = {yellow: 0xFFF40F, goldy: 0xFCF010, gold: 0xF5AC29, orange: 0xE86E3D, coral: 0xEA3560,
   magenta: 0xD60C94, violet: 0x8808B5, purple: 0x4B04C4, blue: 0x1308AE};
 const LIVE_NOTE = 'latest saved checkpoint, playing in its own simulation';
-const CAPTION = 'Virtual rat: DeepMind’s open-source rodent model (Apache-2.0) in MuJoCo, driven by two ' +
+const CAPTION = 'Virtual cat: the simulated body in MuJoCo, driven by two ' +
   'trained artificial neural networks, not a real brain. The wall screen is a schematic.';
-const CAPTION_SHORT = 'Virtual rat (DeepMind rodent model, MuJoCo) · artificial neural networks, not a real brain';
+const CAPTION_SHORT = 'Virtual cat · artificial neural networks, not a real brain';
 // tags for the recorded session's timeline kinds (session.json "timeline")
-const KIND = {start: 'SESSION', brain_on: 'BRAIN ON', lit: 'TARGET LIT', click: 'RAT CLICK', image: 'RIG', typing: 'RIG TYPES',
+const KIND = {start: 'SESSION', brain_on: 'BRAIN ON', lit: 'TARGET LIT', click: 'CAT CLICK', image: 'RIG', typing: 'RIG TYPES',
   scroll: 'RIG SCROLLS', tx_requested: 'TRANSACTION', tx_checked: 'CHECKED', tx_refused: 'NOT SIGNED',
   tx_signed: 'SIGNED', tx_sent: 'BROADCAST', tx_mined: 'MINED'};
 const REPLAY_LABEL = 'Replay: a recorded launch session';   // when session.json carries no label of its own
