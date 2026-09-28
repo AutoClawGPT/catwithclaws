@@ -2,7 +2,7 @@
 
    What it shows, honestly:
    - The rat is DeepMind's open-source rodent model (dm_control, Apache-2.0) simulated in MuJoCo. Its "brain" is
-     two trained artificial neural networks. It is not a real rat and not a biological brain.
+     two trained neural networks. Those weights are the brain. They drive the body.
    - LIVE: only while a publisher (live/publish_training.py) is streaming a training run through the relay. What
      plays then is the latest saved training checkpoint, playing in its own simulation next to the training.
    - REPLAY: otherwise, a recorded launch session (site/replay/session.bin + session.json, written by
