@@ -205,7 +205,7 @@ class FakeChain:
         self.escrow = 1_166_469_550_052_640_996
         self.phase, self.graduated = 2, True
         self.token_curve, self.rec_token, self.rec_curve = bb.CURVE, bb.TOKEN, bb.CURVE
-        self.fee_recipient, self.pair, self.buyback_enabled, self.hook = bb.WALLET, bb.ZERO, 0, bb.HOOK
+        self.fee_recipient, self.pair, self.buyback_enabled, self.hook = bb.FEE_RECIPIENT, bb.ZERO, 0, bb.HOOK
         self.pool_fee, self.tick = 0, 200
         self.rate, self.curve_rate = 34_913, 273_351          # tokens per wei in
         self.nonce = 1

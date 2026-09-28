@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <base href="/">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>CatWithClaws · tokens on pons</title>
-<meta name="description" content="Live tokens launched on pons, read from Robinhood Chain. CatWithClaws ($CWCAI) is listed here after our own launch.">
+<title>CatWithClaws · tokens</title>
+<meta name="description" content="Live launches read from Robinhood Chain. CatWithClawAi ($CWCAI) is the Orbio launch.">
 <meta name="theme-color" content="#000000">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="CatWithClaws">
-<meta property="og:title" content="CatWithClaws · tokens on pons">
-<meta property="og:description" content="Live tokens launched on pons, read from the Robinhood Chain factory.">
+<meta property="og:title" content="CatWithClaws · tokens">
+<meta property="og:description" content="Live launches read from Robinhood Chain. $CWCAI is on Orbio.">
 <meta property="og:url" content="https://catwithclaws.vercel.app/tokens">
 <meta property="og:image" content="https://catwithclaws.vercel.app/assets/share.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -19,8 +19,8 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="CatWithClaws share card: a pixel cat and $CWCAI">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="CatWithClaws · tokens on pons">
-<meta name="twitter:description" content="Live tokens launched on pons, read from Robinhood Chain.">
+<meta name="twitter:title" content="CatWithClaws · tokens">
+<meta name="twitter:description" content="Live launches read from Robinhood Chain. $CWCAI is on Orbio.">
 <meta name="twitter:image" content="https://catwithclaws.vercel.app/assets/share.jpg">
 <meta name="twitter:image:alt" content="CatWithClaws share card: a pixel cat and $CWCAI">
 <link rel="icon" href="assets/catwithclaws-logo.jpg" type="image/jpeg">
@@ -66,9 +66,9 @@
 </header>
 <main id="main">
   <div class="wrap tok-hd">
-    <p class="eyebrow"><span class="dot"></span>Pons · Robinhood Chain · $CWCAI</p>
-    <h1 class="tok-h">Tokens on pons</h1>
-    <p class="tok-lead">Every card is a real launch read from the Pons v2 factory on Robinhood Chain. $CWCAI appears in this list after our own launch. The feed is <a href="/api">/api</a>.</p>
+    <p class="eyebrow"><span class="dot"></span>Orbio · Robinhood Chain · $CWCAI</p>
+    <h1 class="tok-h">Tokens</h1>
+    <p class="tok-lead">Every card is a real launch read from Robinhood Chain. $CWCAI is <a href="https://www.orbio.so/launchpad/0x9ad0C2a6fd4bc320D436EaAeDAbd8aF8eE9CF181" target="_blank" rel="noopener">CatWithClawAi on Orbio</a>. The feed is <a href="/api">/api</a>.</p>
     <p id="tok-status" class="tok-lead">Loading the chain…</p>
     <div class="tok-grid" id="tok-grid"></div>
     <p class="tok-more"><button class="btn" id="tok-more" type="button" hidden>Load older launches</button></p>
@@ -97,7 +97,7 @@
   function card(t) {
     var a = document.createElement('a');
     a.className = 'tok' + (t.ours ? ' ours' : '');
-    a.href = t.pons;
+    a.href = t.launchpad || t.pons;
     a.target = '_blank';
     a.rel = 'noopener';
     a.innerHTML = '<img alt="" width="54" height="54">'

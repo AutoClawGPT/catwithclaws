@@ -167,10 +167,17 @@ from eth_utils import keccak, to_checksum_address  # noqa: E402
 # ---------------------------------------------------------------------------------------------------- the pins
 CHAIN_ID = 4663
 SYMBOL = 'CWCAI'
-# From our own mined receipt, tx 0xa5359c21c84f774843465a77f56a81b9280df6cce2087d53266220291dcf8323.
-TOKEN = to_checksum_address('0xD470bc0f9bf4e7Bd6e009151a1e7eea86d428571')
-CURVE = to_checksum_address('0x9515c935bD5906a691FE50e3a67f884e2083b5fC')
+# Orbio launch, Robinhood Chain block 75130074.
+# Tx 0x04d61640f07ad24062dbce54953c05ab76c74adc46d85c229b19da46174ec195.
+TOKEN = to_checksum_address('0x9ad0C2a6fd4bc320D436EaAeDAbd8aF8eE9CF181')
+CURVE = to_checksum_address('0xF10aAa1f47cB7776f55AC53FcA3dE0E415aADE40')
+# Owner of the Orbio agent (AgentLaunched.owner / agentWallet). Not the buyback signer.
 WALLET = to_checksum_address('0x912e483244e1585d623f0144E4541873719c71A8')
+# Factory record word 3. Orbio set the creator-fee recipient to its receiver, not the owner EOA.
+FEE_RECIPIENT = to_checksum_address('0x40222803Bb0b0Ca93ACcDBf04a30808d863B01C8')
+# Quote asset on the curve: ORBIO, 18 decimals. Address zero would mean ETH. Graduation is 264,112.936947239365305859 ORBIO.
+PAIR = to_checksum_address('0xAa07A0e9209e16aC99708C3EC70159c6eF3128A3')
+PAIR_SYMBOL = 'ORBIO'
 # The buyback wallet is a second key, added only after the owner funds it. Not the launch wallet.
 BUYBACK_WALLET = None
 FACTORY = to_checksum_address(launcher.FACTORY)
@@ -180,7 +187,8 @@ ROUTER = to_checksum_address('0x8876789976dEcBfCbBbe364623C63652db8C0904')
 QUOTER = to_checksum_address('0xe202BB8dd524eE9C5E679e5B5809f7A373a982Ef')
 ZERO = '0x0000000000000000000000000000000000000000'
 POOL_FEE, TICK_SPACING = 0, 200
-POOL_ID = None   # $CWCAI quotes NVDA, not ETH. The pool id is filled when buybacks are wired for that pair.
+POOL_ID = None   # Still on the curve. The quote is ORBIO, not ETH, so there is no ETH pool id to pin.
+LAUNCHPAD = 'https://www.orbio.so/launchpad/' + TOKEN
 POOL_KEY_T = '(address,address,uint24,int24,address)'
 
 RELAY_URL = 'wss://relay-production-ec04.up.railway.app/live'
@@ -704,7 +712,9 @@ def check_chain(rpc, venue_pref='auto'):
         p.append(f'factory getLaunchedToken returned {len(rec)} words, expected 15')
     else:
         checks = [(w_addr(rec[0]) == TOKEN, 'record token'), (w_addr(rec[1]) == CURVE, 'record curve'),
-                  (w_addr(rec[3]) == WALLET, 'record creator-fee recipient (the launch wallet)'),
+                  (w_addr(rec[3]) == FEE_RECIPIENT, 'record creator-fee recipient'),
+                  # Word 4 is the quote token. This engine buys with ETH (msg.value). ORBIO is not ETH,
+                  # so a non-zero pair stops the engine instead of sending ETH into the curve.
                   (w_int(rec[4]) == 0, 'record pair token (ETH)'), (w_int(rec[14]) == 1, 'record exists'),
                   (w_int(rec[9]) == 0, "pons's own buyback switch (off when pinned)")]
         p.extend(f'{what} differs from the pin' for good, what in checks if not good)

@@ -21,7 +21,7 @@ LIVE (switched OFF; the signing code is in live/buyrig_live.py, none of it is in
   in a row (buyrig_live.py). The stream says "Live" instead of "Simulated" only for such a session.
 
 What happens in one session (research: live/BUYRIG_RESEARCH.md)
-  * The rig opens https://www.ponsfamily.com/launchpad/<LABRAT> (1280x900, dark) in Playwright Chromium with
+  * The rig opens the Orbio launchpad page for $CWCAI (1280x900, dark) in Playwright Chromium with
     ponsbot's injected EIP-1193 wallet: a fresh throwaway in-memory key per session and the DRY balance override (pons
     reads 1 ETH for it, so it enables Buy). Signing requests of any kind are refused (BuyBot); pons never asked for one
     in the research runs.
@@ -109,7 +109,7 @@ from eth_abi import decode  # noqa: E402
 from eth_utils import to_checksum_address  # noqa: E402
 
 SYMBOL = buyback.SYMBOL                                   # LABRAT
-COIN_URL = f'https://www.ponsfamily.com/launchpad/{buyback.TOKEN}'
+COIN_URL = buyback.LAUNCHPAD
 VIEW_W, VIEW_H = brainrig.VIEW_W, brainrig.VIEW_H         # 1280 x 900
 REFUSAL_MSG = 'Simulated buy: not signed'                 # pons repeats it in its (masked) toast details
 REFUSAL_LIVE = 'Buy refused by the rig'                   # LIVE: a refused buy (checks, balance, a stop)

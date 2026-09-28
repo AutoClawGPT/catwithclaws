@@ -1,19 +1,24 @@
 # CatWithClaws
 
-A virtual cat's trained brain launches **our** coin on the real pons launchpad (Robinhood Chain). The cat's head
+A virtual cat's trained brain launches **our** coin on Orbio (Robinhood Chain). The cat's head
 steers the mouse cursor and its lever press is the click, for all 11 steps of the launch flow.
 
-**It is not a real cat brain.** It is two trained artificial neural networks driving a simulated body.
+The brain is the two trained networks that drive the body.
 
 ## $CWCAI
 
-Launched 2026-09-28 on pons, Robinhood Chain block 74,475,096.
+Launched 2026-09-28 on [Orbio](https://www.orbio.so/launchpad/0x9ad0C2a6fd4bc320D436EaAeDAbd8aF8eE9CF181), Robinhood Chain block 75,130,074.
 
-- token [0xD470bc0f9bf4e7Bd6e009151a1e7eea86d428571](https://robinhoodchain.blockscout.com/token/0xD470bc0f9bf4e7Bd6e009151a1e7eea86d428571)
-  · [on pons](https://www.ponsfamily.com/launchpad/0xD470bc0f9bf4e7Bd6e009151a1e7eea86d428571)
-- tx [0xa5359c21c84f774843465a77f56a81b9280df6cce2087d53266220291dcf8323](https://robinhoodchain.blockscout.com/tx/0xa5359c21c84f774843465a77f56a81b9280df6cce2087d53266220291dcf8323)
-- name on chain: CatWithClawsAi. Symbol: CWCAI. Supply: 1,000,000,000.
-- quote asset: NVDA (`0xd0601CE157Db5bdC3162BbaC2a2C8aF5320D9EEC`). Curve: `0x9515c935bD5906a691FE50e3a67f884e2083b5fC`.
+- token [0x9ad0C2a6fd4bc320D436EaAeDAbd8aF8eE9CF181](https://robin.etherscan.io/token/0x9ad0C2a6fd4bc320D436EaAeDAbd8aF8eE9CF181)
+  · [on Orbio](https://www.orbio.so/launchpad/0x9ad0C2a6fd4bc320D436EaAeDAbd8aF8eE9CF181)
+- tx [0x04d61640f07ad24062dbce54953c05ab76c74adc46d85c229b19da46174ec195](https://robin.etherscan.io/tx/0x04d61640f07ad24062dbce54953c05ab76c74adc46d85c229b19da46174ec195)
+- name on chain: CatWithClawAi. Symbol: CWCAI. Decimals: 18. Supply: 1,000,000,000.
+- quote asset: ORBIO (`0xAa07A0e9209e16aC99708C3EC70159c6eF3128A3`), 18 decimals. The curve has not graduated.
+- curve: `0xF10aAa1f47cB7776f55AC53FcA3dE0E415aADE40`. Graduation threshold: 264,112.936947239365305859 ORBIO.
+- owner: `0x912e483244e1585d623f0144E4541873719c71A8`. Orbio launcher: `0x0E1651aEC67B2a049a4FA6aEb6C1c305aabfc35b`. Agent id 209209.
+- creator-fee recipient: `0x40222803Bb0b0Ca93ACcDBf04a30808d863B01C8`.
+
+The buyback engine still buys with ETH. This curve quotes ORBIO, so that path stays off (`POOL_ID` and `BUYBACK_WALLET` are unset) until a second wallet and an ORBIO buy path exist.
 
 ## The subject
 

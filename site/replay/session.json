@@ -1,7 +1,7 @@
 {
  "format": "labrat-replay-1",
  "source": "replay",
- "label": "$CWCAI launch · CatWithClawsAi · 2026-09-28 · block 74475096",
+ "label": "$CWCAI launch · CatWithClawAi · 2026-09-28 · block 75130074",
  "session": "launch",
  "task": "steer",
  "run": "brainrig_20260924T211408Z_seed2026",
@@ -217,7 +217,7 @@
    "misses_before": 0,
    "lights": 1,
    "state": "done",
-   "typed": "CatWithClawsAi",
+   "typed": "CatWithClawAi",
    "typing_seconds": 0.6,
    "typed_from": 16.16,
    "typed_until": 16.76
@@ -513,7 +513,7 @@
    "target": 5,
    "exact": false,
    "until": 16.76,
-   "text": "The rig types \"CatWithClawsAi\" into the field the cat clicked"
+   "text": "The rig types \"CatWithClawAi\" into the field the cat clicked"
   },
   {
    "t": 16.92,
@@ -639,7 +639,7 @@
    "t": 46.72,
    "kind": "tx_requested",
    "exact": false,
-   "text": "pons asks for the launch transaction"
+   "text": "Orbio asks for the launch transaction"
   },
   {
    "t": 46.72,
@@ -657,13 +657,13 @@
    "t": 50.46,
    "kind": "tx_sent",
    "exact": false,
-   "text": "Sent to Robinhood Chain: 0xa5359c21c84f774843465a77f56a81b9280df6cce2087d53266220291dcf8323"
+   "text": "Sent to Robinhood Chain: 0x04d61640f07ad24062dbce54953c05ab76c74adc46d85c229b19da46174ec195"
   },
   {
    "t": 52.65,
    "kind": "tx_mined",
    "exact": false,
-   "text": "Mined on Robinhood Chain, block 74475096. $CWCAI is 0xD470bc0f9bf4e7Bd6e009151a1e7eea86d428571"
+   "text": "Mined on Robinhood Chain, block 75130074. $CWCAI is 0x9ad0C2a6fd4bc320D436EaAeDAbd8aF8eE9CF181"
   }
  ],
  "timeline_note": "brain_on, lit and click times are exact (from the command log); typing, image, scroll and transaction times come from the rig's wall clock mapped onto the replay (within about 0.01 s)",

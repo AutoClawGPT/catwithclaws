@@ -1,6 +1,6 @@
 /* GET /api
-   Real Pons v2 launches on Robinhood Chain. There is no Pons API key.
-   Source: factory TokenLaunched logs, then name/symbol/logo/supply from each token.
+   Launches on Robinhood Chain, read from the factory TokenLaunched logs. There is no API key.
+   $CWCAI is the Orbio launch 0x9ad0c2a6fd4bc320d436eaaedabd8af8ee9cf181.
    /api?before=<block> pages backward. /api?limit=20 (max 30).
 */
 const RPCS = [
@@ -9,7 +9,14 @@ const RPCS = [
 ];
 const FACTORY = '0x7eD598BcEf8bd9Edd8C97A195C6d13f40801EC7e';
 const TOPIC = '0x8d4aad4953d0ca700d468f3753aa14432d1b35b43ec6409f051fb6aa43a89607';
-const OURS = 'CWCAI';
+// The live coin. Matched by address: an older CWCAI on the same factory is not this coin.
+const OURS = '0x9ad0c2a6fd4bc320d436eaaedabd8af8ee9cf181';
+const OUR_SYMBOL = 'CWCAI';
+const ORBIO_LAUNCHER = '0x0e1651aec67b2a049a4fa6aeb6c1c305aabfc35b';
+const OUR_TX = '0x04d61640f07ad24062dbce54953c05ab76c74adc46d85c229b19da46174ec195';
+const OUR_BLOCK = 75130074;
+const OUR_CURVE = '0xf10aaa1f47cb7776f55ac53fca3de0e415aade40';
+const OUR_PAIR = '0xaa07a0e9209e16ac99708c3ec70159c6ef3128a3';
 
 const SEL = {
   name: '0x06fdde03',
@@ -103,6 +110,15 @@ async function logsBack(before, limit) {
   return { head, logs: found.slice(0, limit) };
 }
 
+function launchpadFor(token, deployer) {
+  const ours = String(token).toLowerCase() === OURS;
+  const orbio = String(deployer || '').toLowerCase() === ORBIO_LAUNCHER;
+  const base = (ours || orbio)
+    ? 'https://www.orbio.so/launchpad/'
+    : 'https://www.ponsfamily.com/launchpad/';
+  return base + token;
+}
+
 function readLog(log) {
   const data = log.data.slice(2);
   const words = data.match(/.{64}/g) || [];
@@ -115,6 +131,36 @@ function readLog(log) {
     graduationThresholdWei: words[2] ? BigInt('0x' + words[2]).toString() : null,
     block: parseInt(log.blockNumber, 16),
     tx: log.transactionHash,
+  };
+}
+
+async function readPinned() {
+  const sels = [SEL.name, SEL.symbol, SEL.decimals, SEL.supply, SEL.logo, SEL.description];
+  const results = await batchCalls(sels.map((sel) => [{ to: OURS, data: sel }, 'latest']));
+  const name = decodeString(results[0]);
+  const symbol = decodeString(results[1]).replace(/^\$/, '');
+  if (symbol.toUpperCase() !== OUR_SYMBOL) return null;
+  const decimals = parseInt(results[2] || '0x0', 16);
+  const page = launchpadFor(OURS, ORBIO_LAUNCHER);
+  return {
+    token: OURS,
+    curve: OUR_CURVE,
+    deployer: ORBIO_LAUNCHER,
+    pairToken: OUR_PAIR,
+    launchConfigId: 0,
+    graduationThresholdWei: '264112936947239365305859',
+    block: OUR_BLOCK,
+    tx: OUR_TX,
+    name,
+    symbol,
+    decimals: Number.isFinite(decimals) ? decimals : 18,
+    supplyWei: BigInt(results[3] || '0x0').toString(),
+    logo: decodeString(results[4]),
+    description: decodeString(results[5]),
+    pons: page,
+    launchpad: page,
+    explorer: 'https://robin.etherscan.io/token/' + OURS,
+    ours: true,
   };
 }
 
@@ -149,6 +195,8 @@ module.exports = async function handler(req, res) {
       const logo = decodeString(results[base + 4]);
       const description = decodeString(results[base + 5]);
       const sym = symbol.replace(/^\$/, '');
+      const ours = row.token.toLowerCase() === OURS;
+      const page = launchpadFor(row.token, row.deployer);
       return {
         ...row,
         name,
@@ -157,21 +205,28 @@ module.exports = async function handler(req, res) {
         supplyWei,
         logo,
         description,
-        pons: 'https://www.ponsfamily.com/launchpad/' + row.token,
-        explorer: 'https://robinhoodchain.blockscout.com/token/' + row.token,
-        ours: sym.toUpperCase() === OURS,
+        pons: page,
+        launchpad: page,
+        explorer: 'https://robin.etherscan.io/token/' + row.token,
+        ours,
       };
     });
+    let ourCoin = tokens.find((t) => t.ours) || null;
+    if (!ourCoin) {
+      const pinned = await readPinned();
+      if (pinned) ourCoin = pinned;
+    }
     const oldest = tokens.length ? tokens[tokens.length - 1].block : null;
     res.status(200).json({
       ok: true,
       chainId: 4663,
       network: 'Robinhood Chain',
       factory: FACTORY,
-      source: 'Pons v2 factory TokenLaunched, read from the public RPC. No Pons API key.',
-      launchpad: 'https://www.ponsfamily.com/launchpad',
-      ourSymbol: OURS,
-      ourCoin: tokens.find((t) => t.ours) || null,
+      source: 'Factory TokenLaunched logs, read from the public RPC. $CWCAI is the Orbio launch.',
+      launchpad: 'https://www.orbio.so/launchpad/' + OURS,
+      ourSymbol: OUR_SYMBOL,
+      ourAddress: OURS,
+      ourCoin,
       head,
       nextBefore: oldest,
       tokens,

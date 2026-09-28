@@ -90,16 +90,21 @@ const RM = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : 
    below are read. */
 const COIN = (function coin() {
   const HEX40 = /^0x[0-9a-fA-F]{40}$/, HEX64 = /^0x[0-9a-fA-F]{64}$/;
-  const EXPLORER = 'https://robinhoodchain.blockscout.com';
+  const EXPLORER = 'https://robin.etherscan.io';
   const c = window.LABRAT_COIN;
   const ok = !!c && typeof c === 'object' && HEX40.test(String(c.address || ''));
   if (c && !ok) console.warn('labrat: coin.js has no valid contract address; showing "Launching soon"');
   document.documentElement.setAttribute('data-coin', ok ? 'live' : 'soon');
   if (!ok) return null;
-  // links only to pons and the Robinhood Chain explorer; anything else falls back to the address's own pages
+  // launchpad links: Orbio for this coin, ponsfamily only if coin.js names that host.
+  // Explorer links: robin.etherscan.io, or blockscout if coin.js names that host.
   const onHost = (u, host) => {
     try { const x = new URL(String(u)); return x.protocol === 'https:' && (x.hostname === host || x.hostname.endsWith('.' + host)) ? x.href : null; }
     catch (e) { return null; }
+  };
+  const onOne = (u, hosts) => {
+    for (const host of hosts) { const hit = onHost(u, host); if (hit) return hit; }
+    return null;
   };
   const addr = String(c.address);
   const tx = HEX64.test(String(c.tx || '')) ? String(c.tx) : null;
@@ -107,8 +112,8 @@ const COIN = (function coin() {
   const date = /^\d{4}-\d{2}-\d{2}$/.test(String(c.launched || '')) ? String(c.launched) : null;
   const k = {
     addr, tx, block, date,
-    pons: onHost(c.pons, 'ponsfamily.com') || 'https://www.ponsfamily.com/launchpad/' + addr,
-    explorer: onHost(c.explorer, 'robinhoodchain.blockscout.com') || EXPLORER + '/token/' + addr,
+    pons: onOne(c.pons, ['orbio.so', 'ponsfamily.com']) || 'https://www.orbio.so/launchpad/' + addr,
+    explorer: onOne(c.explorer, ['robin.etherscan.io', 'robinhoodchain.blockscout.com']) || EXPLORER + '/token/' + addr,
     txUrl: tx ? EXPLORER + '/tx/' + tx : null,
     blockUrl: block ? EXPLORER + '/block/' + block : null,
   };
@@ -119,6 +124,8 @@ const COIN = (function coin() {
   each('.js-addr-link', e => { e.href = k.explorer; });
   each('.js-addr-copy', e => { e.dataset.copy = addr; });
   each('.js-pons', e => { e.href = k.pons; });
+  each('.cc-name', e => { if (c.name) e.textContent = String(c.name); });
+  each('.cc-sym', e => { if (c.symbol) e.textContent = '$' + String(c.symbol).replace(/^\$/, ''); });
   each('.js-explorer', e => { e.href = k.explorer; });
   each('.js-need-tx', e => { e.hidden = !tx; });
   each('.js-tx', e => { e.textContent = tx || ''; });
@@ -601,7 +608,7 @@ function relaySocket(h) {
 }
 
 /* ------------------------------------------------------------------ the cat on pons (the relay's pons channel)
-   The buy rig (live/buyrig.py) streams the real pons page while the cat clicks through a $CWCAI buy: masked JPEG
+   The buy rig (live/buyrig.py) streams the real Orbio page while the cat clicks through a $CWCAI buy: masked JPEG
    frames (b"PJPG" + JPEG) and messages marked "channel":"pons" (pons_hello / pons_step / pons_result / pons_bye from the
    rig, pons_state / pons_idle from the relay). They come on the same relay socket as the 3D view (live.js hands them
    over); if the 3D view cannot start, or is torn down, this panel opens a socket of its own.
@@ -644,19 +651,19 @@ const PONS = (function ratOnPons() {
   const own = (o, k) => (typeof k === 'string' && Object.prototype.hasOwnProperty.call(o, k)) ? o[k] : undefined;
   const tkey = k => own(TARGET, k) ? k : '';
   const HIT = { amount: 'The rat clicks it (lever press); the rig types the amount',
-                buy: 'The rat clicks it (lever press); pons opens its buy review',
-                confirm: 'The rat clicks it (lever press); pons prepares the transaction' };
-  const DONE = { terms: 'Ticked', accept: 'Terms accepted', amount: 'Amount entered; pons priced the buy',
-                 buy: 'pons shows its buy review', confirm: 'pons prepared the transaction; the rig checked it' };
+                buy: 'The rat clicks it (lever press); Orbio opens its buy review',
+                confirm: 'The rat clicks it (lever press); Orbio prepares the transaction' };
+  const DONE = { terms: 'Ticked', accept: 'Terms accepted', amount: 'Amount entered; Orbio priced the buy',
+                 buy: 'Orbio shows its buy review', confirm: 'Orbio prepared the transaction; the rig checked it' };
   // a rig that sends short phase keywords instead ({i, n, target, phase})
   const PHASE = {
     light: 'The rig lights the target', aim: 'Lit: the cat steers the cursor onto it', press: 'The rat clicks it (lever press)',
     miss: 'A press off the target: ignored, nothing reaches the page', type: 'The rig types the amount',
-    quote: 'pons prices the buy', review: 'pons shows its buy review', check: 'pons prepared the transaction; the rig checked it',
+    quote: 'Orbio prices the buy', review: 'Orbio shows its buy review', check: 'Orbio prepared the transaction; the rig checked it',
     done: 'Done',
   };
   const REASON = { checks_failed: 'a transaction check did not pass', simulation_failed: 'the simulation did not go through',
-    quote_failed: 'pons could not price the buy', timeout: 'the session ran out of time', aborted: 'the session was stopped',
+    quote_failed: 'Orbio could not price the buy', timeout: 'the session ran out of time', aborted: 'the session was stopped',
     balance_low: 'the buyback wallet could not cover the buy', not_settled: 'the buy did not go through on chain' };
   const STALL_MS = 8000;              // live, but no frame for this long: say so on the picture
   const BB_STALE_S = 90;              // the buyback status is rewritten every 10 s; older = not running (as its panel says)
@@ -724,7 +731,7 @@ const PONS = (function ratOnPons() {
         : own(REASON, r.reason) || 'the session ended without a buy',
     };
   }
-  // the latest buy the buyback engine recorded as clicked by the cat on pons (when the relay has none): a simulated
+  // the latest buy the buyback engine recorded as clicked by the cat on Orbio (when the relay has none): a simulated
   // one, or (LIVE) one the engine verified on chain (state executed, a transaction hash); anything else is simulated
   function bbPonsOf(j) {
     const b = obj(j && j.buys), recent = b && Array.isArray(b.recent) ? b.recent : [];
@@ -798,7 +805,7 @@ const PONS = (function ratOnPons() {
     else if (live && test) cap = 'Recorded session';
     put(E.cap, cap); E.cap.hidden = !cap;
     if (!S.open && !S.hasFrame) { put(E.emptyT, 'Connecting'); put(E.emptyS, ''); }
-    else if (live) { put(E.emptyT, 'Opening the $CWCAI page on pons'); put(E.emptyS, 'the first frame appears in a moment'); }
+    else if (live) { put(E.emptyT, 'Opening the $CWCAI page on Orbio'); put(E.emptyS, 'the first frame appears in a moment'); }
     else { put(E.emptyT, 'The next session streams here'); put(E.emptyS, 'live, as the cat clicks through the buy'); }
 
     // the session: where the cat is, or how it ended
@@ -808,13 +815,13 @@ const PONS = (function ratOnPons() {
       k = test ? 'Recorded buy session' : 'Buy session in progress';
       if (res && res.ok) {
         target = buyLine(sim, res.eth, res.out);
-        phase = res.final ? 'Session complete' : 'pons built the transaction; the rig checked it' +
+        phase = res.final ? 'Session complete' : 'Orbio built the transaction; the rig checked it' +
           (res.simOk ? ' and simulated it on the live chain' : '');
       } else if (res) target = 'No buy this session: ' + res.why;
       else if (st && (st.i || st.name)) {
         target = (st.i && st.total ? 'Target ' + st.i + ' of ' + st.total : 'Target') + (st.name ? ' · ' + st.name : '');
         phase = st.phase;
-      } else target = 'Opening the $CWCAI page on pons';
+      } else target = 'Opening the $CWCAI page on Orbio';
     } else if (h) {
       k = 'Last session' + (hhmm(h.started) ? ' · ' + hhmm(h.started) : '');
       target = res ? (res.ok ? buyLine(sim, res.eth, res.out) : 'No buy this session: ' + res.why) : 'The session ended before a result';
@@ -854,9 +861,9 @@ const PONS = (function ratOnPons() {
     const nx = live ? '' : nextLine();
     put(E.next, nx); E.next.hidden = !nx;
     put(E.note, (test ? 'A recorded session. ' : '') +
-      (sim ? 'Simulated: every click happens on the real pons page. pons builds the buy transaction; it is checked and ' +
+      (sim ? 'Simulated: every click happens on the real Orbio page. pons builds the buy transaction; it is checked and ' +
              'simulated on the live chain, and not signed or sent.'
-           : 'Every click happens on the real pons page, and the transaction is checked before it is signed.'));
+           : 'Every click happens on the real Orbio page, and the transaction is checked before it is signed.'));
   }
 
   function show() {
@@ -2805,7 +2812,7 @@ const MAZE = (function ratMaze() {
    LIVE (the engine's live bookings: mode "LIVE", buys.simulated false): the banner says "Buybacks live". Each hour's
    buy is booked (state "booked": not executed yet, never shown as bought) and executed by the cat on pons; only an
    entry the engine verified on chain (state "executed", its 0x + 64-hex tx hash) is shown as a buy, with its explorer
-   link and "clicked by the cat on pons". The tx hash is used only in that link's href, checked character by character. */
+   link and "clicked by the cat on Orbio". The tx hash is used only in that link's href, checked character by character. */
 (function buybacks() {
   const C = window.LABRAT_BUYBACK, wrap = $('#bb-wrap');
   if (!wrap || !C || typeof C !== 'object' || C.enabled !== true || typeof C.statusUrl !== 'string' || !C.statusUrl) return;
@@ -2847,7 +2854,7 @@ const MAZE = (function ratMaze() {
   const BN = { box: $('#bbk-banner'), pill: $('#bbk-pill'), text: $('#bbk-banner-t') };
   const BANNER_DRY = BN.pill && BN.text ? { pill: BN.pill.textContent, text: BN.text.textContent } : null;
   const BANNER_LIVE = { pill: 'Buybacks live',
-    text: 'Every hour, the cat clicks that hour’s $CWCAI buyback through on the real pons page. The rig checks ' +
+    text: 'Every hour, the cat clicks that hour’s $CWCAI buyback through on the real Orbio page. The rig checks ' +
           'the transaction before it is sent from the buyback wallet below, and every buy is verified on chain and ' +
           'linked to its transaction on the explorer.' };
   const TX = /^0x[0-9a-f]{64}$/;                           // a transaction hash, and nothing else, becomes a link
@@ -2910,7 +2917,7 @@ const MAZE = (function ratMaze() {
           const at = typeof r.at === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(r.at) ? r.at.slice(0, 16).replace('T', ' ') + ' UTC' : '';
           const rate = typeof r.hit_rate === 'number' ? ' · hit rate ' + Math.round(r.hit_rate * 1000) / 10 + '%' : '';
           return '<li><span class="bb-t">' + esc(at) + '</span><span>buy: ' + esc(fmtEth(r.eth_in)) + ' &rarr; ' + esc(fmtTok(r.labrat_out)) +
-            ' CWCAI <em>clicked by the cat on pons</em>' + esc(rate) + ' ' + txLink(r.tx) + '</span></li>';
+            ' CWCAI <em>clicked by the cat on Orbio</em>' + esc(rate) + ' ' + txLink(r.tx) + '</span></li>';
         }).join('');
       }
     }
@@ -2982,13 +2989,13 @@ const MAZE = (function ratMaze() {
       let line = '';
       if (bought) line = 'Buy: ' + (eth ? eth + ' ETH' : '') + (tok ? ' → ' + tok + ' CWCAI' : '');
       else if (lb.state === 'simulated') line = kind[0].toUpperCase() + kind.slice(1) + ': ' + (eth ? eth + ' ETH' : '') + (tok ? ' → ' + tok + ' CWCAI' : '');
-      else if (live && lb.state === 'booked') line = (eth ? 'Buy of ' + eth + ' ETH booked' : 'Buy booked') + ': the cat clicks it through on pons, not executed yet';
-      else if (lb.state === 'due') line = (eth ? kind[0].toUpperCase() + kind.slice(1) + ' of ' + eth + ' ETH booked' : 'Buy booked') + ': the cat clicks it through on pons next';
+      else if (live && lb.state === 'booked') line = (eth ? 'Buy of ' + eth + ' ETH booked' : 'Buy booked') + ': the cat clicks it through on Orbio, not executed yet';
+      else if (lb.state === 'due') line = (eth ? kind[0].toUpperCase() + kind.slice(1) + ' of ' + eth + ' ETH booked' : 'Buy booked') + ': the cat clicks it through on Orbio next';
       else if (lb.state === 'expired') line = (live ? 'The hour’s buy was not executed in time' : 'The hour’s buy was not completed in time') + (why ? ': ' + why : '');
       else if (lb.state === 'none' || (!eth && Object.keys(lb).length)) line = 'No buy this hour' + (why ? ': ' + why : '');
       else if (eth && !live) line = kind[0].toUpperCase() + kind.slice(1) + ': ' + eth + ' ETH' + (tok ? ' → ' + tok + ' CWCAI' : '');
       const p = obj(lb.pons);
-      if (line && p && p.clicked_by_rat === true && (bought || lb.simulated !== false)) line += ' · clicked through by the cat on pons';
+      if (line && p && p.clicked_by_rat === true && (bought || lb.simulated !== false)) line += ' · clicked through by the cat on Orbio';
       E.lastBuy.innerHTML = esc(line) + (bought ? ' · ' + txLink(lb.tx) : '');
       E.lastBuy.hidden = !line;
     }
@@ -3019,7 +3026,7 @@ const MAZE = (function ratMaze() {
         esc(fmtEth(r.eth_in)) + ' &rarr; ' + esc(fmtTok(r.labrat_out)) + ' CWCAI' + rate +
         (r.preview === true ? ' <em>preview amount</em>' : '') +
         (venue ? ' <em>' + venue + '</em>' : '') +
-        (obj(r.pons) && r.pons.clicked_by_rat === true ? ' <em>clicked by the cat on pons</em>' : '') +
+        (obj(r.pons) && r.pons.clicked_by_rat === true ? ' <em>clicked by the cat on Orbio</em>' : '') +
         (executed ? ' ' + txLink(r.tx) : '') +
         '</span></li>';
     }).join('');
@@ -3035,7 +3042,7 @@ const MAZE = (function ratMaze() {
       (test ? 'These counts come from a test stream. ' : '') +
       (stopped ? 'Buys stopped: ' + stopped + '. ' : '') +
       (simulated ? 'Buybacks shown are simulated against the live chain: checked, not sent. '
-                 : 'A buy counts only once its transaction is verified on chain: sent from the buyback wallet, to the pons pool, for the booked amount, with the CWCAI received. ') +
+                 : 'A buy counts only once its transaction is verified on chain: sent from the buyback wallet, to the pinned pool, for the booked amount, with the CWCAI received. ') +
       'Hits, misses and off-tile presses are counted as each training attempt ends; one buy an hour, on the hour (UTC).';
     tick();
   }

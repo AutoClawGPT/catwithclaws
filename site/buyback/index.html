@@ -5,13 +5,13 @@
 <base href="/">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>CatWithClaws · buyback</title>
-<meta name="description" content="Cat buybacks for $CWCAI: one buyback an hour, sized by C-01's hit rate at Cat Tiles that hour, and the cat clicks each buy through itself on pons. Buybacks start soon.">
+<meta name="description" content="Cat buybacks for $CWCAI: one buyback an hour, sized by C-01's hit rate at Cat Tiles that hour, and the cat clicks each buy through itself on Orbio. Buybacks start soon.">
 <meta name="theme-color" content="#000000">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="CatWithClaws">
 <meta property="og:title" content="CatWithClaws · a virtual cat launches a coin">
-<meta property="og:description" content="A simulated cat with a brain of two trained neural networks. Its head is the mouse, a lever press is the click. It launches $CWCAI on pons itself: every click is the cat's.">
+<meta property="og:description" content="A simulated cat with a brain of two trained neural networks. Its head is the mouse, a lever press is the click. It launches $CWCAI on Orbio itself: every click is the cat's.">
 <meta property="og:image" content="https://catwithclaws.vercel.app/assets/share.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="CatWithClaws share card: a pixel cat and $CWCAI">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="CatWithClaws · a virtual cat launches a coin">
-<meta name="twitter:description" content="A simulated cat with a brain of two trained neural networks. Its head is the mouse, a lever press is the click. It launches $CWCAI on pons itself.">
+<meta name="twitter:description" content="A simulated cat with a brain of two trained neural networks. Its head is the mouse, a lever press is the click. It launches $CWCAI on Orbio itself.">
 <meta name="twitter:image" content="https://catwithclaws.vercel.app/assets/share.jpg">
 <meta name="twitter:image:alt" content="CatWithClaws share card: a pixel cat and $CWCAI">
 <link rel="icon" href="assets/catwithclaws-logo.jpg" type="image/jpeg">
@@ -128,7 +128,7 @@
       <a href="/buyback#live">Live</a>
       <a href="/buyback#buybacks">Buybacks</a>
       <a href="/buyback#piano">Cat Tiles</a>
-      <a href="/buyback#cat-on-pons">Cat on pons</a>
+      <a href="/buyback#cat-on-pons">Cat on Orbio</a>
       <a href="/buyback#how">How it works</a>
       <a href="/buyback" aria-current="page">Buyback</a>
       <a href="/burn">Burn</a>
@@ -145,11 +145,11 @@
   <div class="wrap wide trial-hd">
     <p class="eyebrow"><span class="dot"></span>Buyback &middot; Subject C-01 &middot; $CWCAI</p>
     <h1 class="trial-h">The better it plays, the bigger the buyback.</h1>
-    <p class="trial-lead">C-01 plays Cat Tiles live below. Its hits and misses are counted each hour; on the hour, its hit rate sets the size of one $CWCAI buyback, and the cat clicks that buy through itself on the real pons page.</p>
+    <p class="trial-lead">C-01 plays Cat Tiles live below. Its hits and misses are counted each hour; on the hour, its hit rate sets the size of one $CWCAI buyback, and the cat clicks that buy through itself on the real Orbio page.</p>
     <!-- site.js sets this from the buyback engine's status: mode DRY keeps the text below, mode LIVE says "Buybacks live" -->
     <div class="bbk-banner" id="bbk-banner" role="status">
       <span class="bbk-pill" id="bbk-pill">Buybacks start soon</span>
-      <p id="bbk-banner-t">The hourly budget is announced when it's ready. Until then, every hour is still counted, and each hourly buy session below runs on the real pons page and is simulated: checked on the live chain, not sent.</p>
+      <p id="bbk-banner-t">The hourly budget is announced when it's ready. Until then, every hour is still counted, and each hourly buy session below runs on the real Orbio page and is simulated: checked on the live chain, not sent.</p>
     </div>
     <div class="bbk-wallet" id="wallet">
       <span class="bbk-k">Buyback wallet</span>
@@ -270,7 +270,7 @@
         <span class="bb-mode dry" id="bb-test" hidden>Test stream</span>
         <span class="bb-conn" id="bb-conn">loading</span>
       </div>
-      <p class="bb-rule">One $CWCAI buyback an hour, sized by how well C-01 played that hour: <b>hourly budget &times; hit rate</b>. Its hits, misses and off-tile presses are counted through the hour (hit rate = hits &divide; all three); on the hour, the rate sets the buy and the cat clicks it through on pons. One buy an hour, instead of one per tile, keeps gas low. The budget comes from the coin's trading fees and is announced when it's ready; fixed caps per buy, per hour and per day apply.<span id="bb-lever" hidden> In the lever task, each clean press counts as a hit.</span></p>
+      <p class="bb-rule">One $CWCAI buyback an hour, sized by how well C-01 played that hour: <b>hourly budget &times; hit rate</b>. Its hits, misses and off-tile presses are counted through the hour (hit rate = hits &divide; all three); on the hour, the rate sets the buy and the cat clicks it through on Orbio. One buy an hour, instead of one per tile, keeps gas low. The budget comes from the coin's trading fees and is announced when it's ready; fixed caps per buy, per hour and per day apply.<span id="bb-lever" hidden> In the lever task, each clean press counts as a hit.</span></p>
       <div class="bbh" aria-label="This hour">
         <div class="bbh-hd">
           <span class="bbh-k">This hour</span><span class="bbh-t" id="bb-win-t"></span>
@@ -309,21 +309,21 @@
     </section>
   </div>
 
-  <!-- the cat on pons: each buyback clicked through by the cat on the real pons page (site.js; frames via the relay's
+  <!-- the cat on Orbio: each buyback clicked through by the cat on the real Orbio page (site.js; frames via the relay's
        pons channel). Hidden until there is a session to show. -->
   <div class="wrap wide" id="rp-wrap" hidden>
     <section class="rp" id="cat-on-pons" aria-labelledby="rp-title" data-state="connecting">
       <div class="bb-bar">
-        <h2 class="bb-title" id="rp-title">Cat on pons</h2>
+        <h2 class="bb-title" id="rp-title">Cat on Orbio</h2>
         <span class="badge conn" id="rp-badge"><i aria-hidden="true"></i><b id="rp-badge-t">CONNECTING</b></span>
         <span class="bb-mode dry" id="rp-sim">Simulated</span>
         <span class="bb-conn" id="rp-conn"></span>
       </div>
-      <p class="bb-rule">For each buyback, C-01 clicks through the buy itself on the $CWCAI page on pons. The rig lights one target at a time, the cat steers the cursor onto it with its head, and a lever press clicks; presses off the target are ignored. After the cat clicks the amount field, the rig types the hour's amount. Wallet details on the page are hidden in this stream.</p>
+      <p class="bb-rule">For each buyback, C-01 clicks through the buy itself on the $CWCAI page on Orbio. The rig lights one target at a time, the cat steers the cursor onto it with its head, and a lever press clicks; presses off the target are ignored. After the cat clicks the amount field, the rig types the hour's amount. Wallet details on the page are hidden in this stream.</p>
       <div class="rp-body">
         <figure class="rp-screen" id="rp-screen">
-          <canvas id="rp-canvas" width="1280" height="900" role="img" aria-label="The pons page as the cat works through the buy"></canvas>
-          <div class="rp-empty" id="rp-empty"><b id="rp-empty-t">Opening the $CWCAI page on pons</b><span id="rp-empty-s">the first frame appears in a moment</span></div>
+          <canvas id="rp-canvas" width="1280" height="900" role="img" aria-label="The Orbio page as the cat works through the buy"></canvas>
+          <div class="rp-empty" id="rp-empty"><b id="rp-empty-t">Opening the $CWCAI page on Orbio</b><span id="rp-empty-s">the first frame appears in a moment</span></div>
           <figcaption class="rp-cap" id="rp-cap" hidden></figcaption>
           <span class="rp-now" id="rp-now" aria-hidden="true" hidden></span>
         </figure>
@@ -356,7 +356,7 @@
       <li><b>It plays live</b><span>C-01 plays Cat Tiles while it trains: its head picks a lane, and a lever press hits that lane's red button as a tile reaches it. You can watch it above.</span></li>
       <li><b>Hits and misses are counted each hour</b><span>A tile pressed in time is a hit. A tile that slides past, or a press with no tile on the button, counts against it.</span></li>
       <li><b>On the hour, the hit rate sets the buy</b><span>Hourly budget &times; that hour's hit rate, within fixed caps. One buy an hour instead of one per tile keeps gas low. The budget is announced when it's ready.</span></li>
-      <li><b>The cat clicks the buy through on pons</b><span>The rig opens the real $CWCAI page and lights one button at a time; the cat's head moves the cursor and its lever press clicks: the amount, Buy CWCAI, then Confirm.</span></li>
+      <li><b>The cat clicks the buy through on Orbio</b><span>The rig opens the real $CWCAI page and lights one button at a time; the cat's head moves the cursor and its lever press clicks: the amount, Buy CWCAI, then Confirm.</span></li>
       <li><b>Checked, then sent from the buyback wallet</b><span>Before anything is sent, the rig checks the transaction: the right coin, the right amount, nothing extra. Then it goes out from the buyback wallet above, and each buy is verified on chain before it counts.</span></li>
     </ol>
     <p class="bbk-fine">The cat's brain is the two trained networks. The same brain launched $CWCAI, and its fingerprint is on-chain.</p>
@@ -373,7 +373,7 @@
         <img class="brand-mark" src="assets/catwithclaws-logo.jpg" width="1254" height="1254" alt="" loading="lazy" decoding="async">
         <span class="brand-word">cat<b>claws</b></span>
       </a>
-      <p class="foot-honest">Subject C-01's brain is two trained neural networks driving the body. CatWithClaws is an independent project. $CWCAI is the coin the brain launched on pons.</p>
+      <p class="foot-honest">Subject C-01's brain is two trained neural networks driving the body. CatWithClaws is an independent project. $CWCAI is the coin the brain launched on Orbio.</p>
     </div>
     <div class="foot-cols">
       <div>
@@ -389,7 +389,7 @@
         <ul>
           <li><a href="https://github.com/AutoClawGPT/catwithclaws" target="_blank" rel="noopener">github.com/CatWithClawsDevRH/CatWithClaws</a></li>
           <li class="if-soon">$CWCAI: launching soon</li>
-          <li class="if-live"><a class="js-pons" target="_blank" rel="noopener">$CWCAI on pons</a></li>
+          <li class="if-live"><a class="js-pons" target="_blank" rel="noopener">$CWCAI on Orbio</a></li>
           <li class="if-live"><a class="js-explorer" target="_blank" rel="noopener">Contract on the explorer</a></li>
         </ul>
       </div>
