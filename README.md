@@ -7,9 +7,13 @@ steers the mouse cursor and its lever press is the click, for all 11 steps of th
 
 ## $CWCAI
 
-Not launched. https://catwithclaws.vercel.app shows Launching soon. There is no contract address until the cat
-signs our own pons transaction. After that, the contract, transaction, block, and pons link are written into
-`site/coin.js` from that receipt. No other project's token is used.
+Launched 2026-09-28 on pons, Robinhood Chain block 74,475,096.
+
+- token [0xD470bc0f9bf4e7Bd6e009151a1e7eea86d428571](https://robinhoodchain.blockscout.com/token/0xD470bc0f9bf4e7Bd6e009151a1e7eea86d428571)
+  · [on pons](https://www.ponsfamily.com/launchpad/0xD470bc0f9bf4e7Bd6e009151a1e7eea86d428571)
+- tx [0xa5359c21c84f774843465a77f56a81b9280df6cce2087d53266220291dcf8323](https://robinhoodchain.blockscout.com/tx/0xa5359c21c84f774843465a77f56a81b9280df6cce2087d53266220291dcf8323)
+- name on chain: CatWithClawsAi. Symbol: CWCAI. Supply: 1,000,000,000.
+- quote asset: NVDA (`0xd0601CE157Db5bdC3162BbaC2a2C8aF5320D9EEC`). Curve: `0x9515c935bD5906a691FE50e3a67f884e2083b5fC`.
 
 ## The subject
 

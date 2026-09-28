@@ -167,11 +167,11 @@ from eth_utils import keccak, to_checksum_address  # noqa: E402
 # ---------------------------------------------------------------------------------------------------- the pins
 CHAIN_ID = 4663
 SYMBOL = 'CWCAI'
-# Our token, curve, launch wallet, and buyback wallet are written here from our own pons receipt.
-# They stay empty until that launch. Another project's token is not pinned here.
-TOKEN = None
-CURVE = None
-WALLET = None
+# From our own mined receipt, tx 0xa5359c21c84f774843465a77f56a81b9280df6cce2087d53266220291dcf8323.
+TOKEN = to_checksum_address('0xD470bc0f9bf4e7Bd6e009151a1e7eea86d428571')
+CURVE = to_checksum_address('0x9515c935bD5906a691FE50e3a67f884e2083b5fC')
+WALLET = to_checksum_address('0x912e483244e1585d623f0144E4541873719c71A8')
+# The buyback wallet is a second key, added only after the owner funds it. Not the launch wallet.
 BUYBACK_WALLET = None
 FACTORY = to_checksum_address(launcher.FACTORY)
 FEE_ESCROW = to_checksum_address('0xd3AFEB2a57f70eF218Aa82451c51B2fb0416Ac9e')
@@ -180,7 +180,7 @@ ROUTER = to_checksum_address('0x8876789976dEcBfCbBbe364623C63652db8C0904')
 QUOTER = to_checksum_address('0xe202BB8dd524eE9C5E679e5B5809f7A373a982Ef')
 ZERO = '0x0000000000000000000000000000000000000000'
 POOL_FEE, TICK_SPACING = 0, 200
-POOL_ID = None   # our pool id, from our launch, not another token's pool
+POOL_ID = None   # $CWCAI quotes NVDA, not ETH. The pool id is filled when buybacks are wired for that pair.
 POOL_KEY_T = '(address,address,uint24,int24,address)'
 
 RELAY_URL = 'wss://relay-production-ec04.up.railway.app/live'
