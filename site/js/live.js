@@ -72,9 +72,8 @@ const TIERS = [
 const PAL = {yellow: 0xFFF40F, goldy: 0xFCF010, gold: 0xF5AC29, orange: 0xE86E3D, coral: 0xEA3560,
   magenta: 0xD60C94, violet: 0x8808B5, purple: 0x4B04C4, blue: 0x1308AE};
 const LIVE_NOTE = 'latest saved checkpoint, playing in its own simulation';
-const CAPTION = 'Virtual cat: the simulated body in MuJoCo, driven by two ' +
-  'trained artificial neural networks, not a real brain. The wall screen is a schematic.';
-const CAPTION_SHORT = 'Virtual cat · artificial neural networks, not a real brain';
+const CAPTION = 'C-01: two trained networks drive the body in MuJoCo. The wall screen shows the cursor and the target.';
+const CAPTION_SHORT = 'C-01 · two trained networks drive the body';
 // tags for the recorded session's timeline kinds (session.json "timeline")
 const KIND = {start: 'SESSION', brain_on: 'BRAIN ON', lit: 'TARGET LIT', click: 'CAT CLICK', image: 'RIG', typing: 'RIG TYPES',
   scroll: 'RIG SCROLLS', tx_requested: 'TRANSACTION', tx_checked: 'CHECKED', tx_refused: 'NOT SIGNED',
